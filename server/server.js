@@ -1,18 +1,23 @@
-'use strict';
-const Hapi = require('hapi');
-const server = Hapi.server({
-    host: 'localhost',
-    port: 7000
-});
-async function start() {
-    try {
-        await server.start();
-    } catch (err) {
-        console.log(err);
-        process.exit(1);
-    }
+/* eslint-disable no-console */
 
-    console.log('Server running at:', server.info.uri);
+
+const Hapi = require('hapi');
+const routes = require('./routes/routes.config');
+
+const server = Hapi.server({
+  host: 'localhost',
+  port: 7000,
+  routes: { cors: true },
+});
+server.route(routes);
+const init = async () => {
+  await server.start();
+  console.log(`Server running at: ${server.info.uri}`);
 };
 
-start();
+process.on('unhandledRejection', (err) => {
+  console.log(err);
+  process.exit(1);
+});
+
+init();
