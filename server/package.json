@@ -1,0 +1,25 @@
+{
+  "name": "video-journal",
+  "version": "1.0.0",
+  "description": "'RESTful API to handle uploading of videos from client to Youtube and storing of metadata in a database instance. Videos will then be displayed as markers on a Leaflet/Google Map,indicating location where they were recorded' ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "culture",
+    "Namibia",
+    "Video",
+    "EXIF"
+  ],
+  "author": "Michael, Donovan, Brit",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^17.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}

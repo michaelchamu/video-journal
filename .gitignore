@@ -1,0 +1,4 @@
+server/.config.js
+server/db/database.config.js
+server/node_modules/
+server/videos/
