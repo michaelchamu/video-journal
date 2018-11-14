@@ -3,6 +3,7 @@
 
 const Hapi = require('hapi');
 const routes = require('./routes/routes.config');
+const { mongoose } = require('./db/database.config');
 
 const server = Hapi.server({
   host: 'localhost',
