@@ -14,7 +14,6 @@ module.exports = [{
     if (err) {
       h.response({ statusCode: 400, err });
     } else {
-      console.log(request.params.id);
       return Video.findOneAndUpdate({ _id: request.params.id }, {
         $push: {
           reactions: {
@@ -25,7 +24,6 @@ module.exports = [{
           },
         },
       }).then((video) => {
-        console.log(video);
         if (!video) { return h.response({ statusCode: 404 }); }
         return h.response({ statusCode: 201, video });
       }).catch(err => h.response({ statusCode: 400, err }));
