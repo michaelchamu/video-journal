@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const VideoSchema = new mongoose.Schema({
-  video_link: {
+  video_path: {
     type: String,
     required: true,
   },
@@ -21,7 +21,7 @@ const VideoSchema = new mongoose.Schema({
     required: true,
   },
   reactions: [{
-    reaction_link: {
+    reaction_path: {
       type: String,
     },
     location: {
@@ -43,4 +43,4 @@ const VideoSchema = new mongoose.Schema({
 });
 
 const Video = mongoose.model('Video', VideoSchema);
-module.exports = Video;
+module.exports = { Video };
