@@ -16,6 +16,7 @@ const uploadFile = (file) => {
 };
 
 const uploadReactionFile = (file) => {
+  console.log('hit');
   const promise = new Promise((resolve, reject) => {
     try {
       const stream = fs.createWriteStream(path.join(__dirname, '..', 'videos/reactions', file.hapi.filename));
