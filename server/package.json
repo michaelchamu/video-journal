@@ -15,7 +15,9 @@
   "author": "Michael, Donovan, Brit",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^17.7.0"
+    "hapi": "^17.7.0",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.3.12"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
