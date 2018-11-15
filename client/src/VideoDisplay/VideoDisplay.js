@@ -1,9 +1,13 @@
 import React from 'react';
 import { Player } from 'video-react';
 import 'video-react/dist/video-react.css';
+import { BASE_VIDEO_URL } from '../configs/config';
 
 const VideoDisplay = props => {
-    return <Player playsInline poster="" src={props.video_path} />;
+    const video = BASE_VIDEO_URL + props.video_path;
+    return (
+        <Player playsInline aspectRatio={'auto'} fluid={false} src={video} />
+    );
 };
 
 export { VideoDisplay };
