@@ -5,41 +5,32 @@ const VideoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
-  },
   date_created: {
     type: Date,
     required: true,
   },
-  reactions: [{
-    reaction_path: {
-      type: String,
-    },
-    location: {
-      type: {
+  reactions: [
+    {
+      local_reaction: {
         type: String,
-        enum: ['Point'],
-        required: true,
       },
-      coordinates: {
-        type: [Number],
-        required: true,
-      },
+      internation_reactions: [
+        {
+          country: {
+            type: String,
+          },
+          date_created: {
+            type: Date,
+            required: true,
+          },
+          video_link: {
+            type: Date,
+            required: true,
+          },
+        },
+      ],
     },
-    date_created: {
-      type: Date,
-      required: true,
-    },
-  }],
+  ],
 });
 
 const Video = mongoose.model('Video', VideoSchema);
