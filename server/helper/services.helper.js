@@ -14,27 +14,79 @@ const writeFile = (filePath, file) => {
 };
 
 // check and create folders returning the newly created folder path
-const uploadFile = (file) => {
+const uploadCommentFiles = (file, snippet, reaction) => {
   const promise = new Promise((resolve, reject) => {
-    const result = writeFile(__dirname, '..', 'videos/interviews', file.hapi.filename, file);
-    if (result) resolve({ statusCode: 201, message: 'file uploaded' });
-    else reject(result);
-    // try {
-    //   const stream = fs.createWriteStream(
-    //     path.join(__dirname, '..', 'videos/interviews', file.hapi.filename),
-    //   );
-    //   // upload video to path
-    //   file.pipe(stream);
-    //   resolve({ statusCode: 201, message: 'file uploaded' });
-    // } catch (err) {
-    //   reject(err);
-    // }
+    const directory = path.join(__dirname, '..', `videos/vs${snippet}/reactions/r${reaction}`);
+    // check if reaction exists
+    if (fs.existsSync(directory)) {
+      // check if comments directory exists
+      const comments = path.join(
+        __dirname,
+        '..',
+        `videos/vs${snippet}/reactions/r${reaction}/comments`,
+      );
+      if (fs.existsSync(comments)) {
+        fs.readdir(comments, (err, contents) => {
+          if (err) reject(err);
+          else {
+            const result = writeFile(
+              path.join(
+                __dirname,
+                '..',
+                `videos/vs${snippet}/reactions/r${reaction}/comments`,
+                `c${contents.length + 1}.mp4`,
+              ),
+              file,
+            );
+            return result
+              ? resolve({
+                statusCode: 201,
+                path: path.join(
+                  `vs${snippet}/reactions/r${reaction}/comments`,
+                  `c${contents.length + 1}.mp4`,
+                ),
+              })
+              : reject(result);
+          }
+        });
+      } else {
+        fx.mkdir(comments, (err) => {
+          if (err) reject(err);
+          else {
+            fs.readdir(comments, (err, contents) => {
+              if (err) reject(err);
+              else {
+                const result = writeFile(
+                  path.join(
+                    __dirname,
+                    '..',
+                    `videos/vs${snippet}/reactions/r${reaction}/comments`,
+                    `c${contents.length + 1}.mp4`,
+                  ),
+                  file,
+                );
+                return result
+                  ? resolve({
+                    statusCode: 201,
+                    path: path.join(
+                      `vs${snippet}/reactions/r${reaction}/comments`,
+                      `c${contents.length + 1}.mp4`,
+                    ),
+                  })
+                  : reject(result);
+              }
+            });
+          }
+        });
+      }
+    } else {
+      reject(new Error('reaction comment cannot exist without reaction'));
+    }
   });
   return promise;
 };
 
 const uploadReactionFiles = (file, snippet, reaction) => {
-  console.log('here');
   const promise = new Promise((resolve, reject) => {
     // count number of files in direcor
     const directory = path.join(__dirname, '..', `videos/vs${snippet}/reactions/r${reaction}`);
@@ -43,56 +95,39 @@ const uploadReactionFiles = (file, snippet, reaction) => {
         if (err) {
           reject(err);
         } else {
-          // eslint-disable-next-line no-shadow
-          fs.readdir(directory, (err, contents) => {
-            if (err) reject(err);
-            else {
-              const result = writeFile(
-                path.join(
-                  __dirname,
-                  '..',
-                  `videos/vs${snippet}/reactions/r${reaction}`,
-                  `r${contents.length + 1}.mp4`,
-                ),
-                file,
-              );
-              return result
-                ? resolve({
-                  statusCode: 201,
-                  path: path.join(
-                    `vs${snippet}/reactions/r${reaction}`,
-                    `r${contents.length + 1}.mp4`,
-                  ),
-                })
-                : reject(result);
-            }
-          });
-        }
-      });
-    } else {
-      fs.readdir(directory, (err, contents) => {
-        if (err) reject(err);
-        else {
           const result = writeFile(
             path.join(
               __dirname,
               '..',
               `videos/vs${snippet}/reactions/r${reaction}`,
-              `r${contents.length + 1}.mp4`,
+              `r${reaction}.mp4`,
             ),
             file,
           );
           return result
             ? resolve({
               statusCode: 201,
-              path: path.join(
-                `vs${snippet}/reactions/r${reaction}`,
-                `r${contents.length + 1}.mp4`,
-              ),
+              path: path.join(`vs${snippet}/reactions/r${reaction}`, `r${reaction}.mp4`),
             })
             : reject(result);
         }
       });
+    } else {
+      const result = writeFile(
+        path.join(
+          __dirname,
+          '..',
+          `videos/vs${snippet}/reactions/r${reaction}`,
+          `r${reaction}.mp4`,
+        ),
+        file,
+      );
+      return result
+        ? resolve({
+          statusCode: 201,
+          path: path.join(`vs${snippet}/reactions/r${reaction}`, `r${reaction}.mp4`),
+        })
+        : reject(result);
     }
   });
   return promise;
@@ -132,4 +167,4 @@ const uploadSetUpFile = (file, snippet) => {
   return promise;
 };
 
-module.exports = { uploadFile, uploadReactionFiles, uploadSetUpFile };
+module.exports = { uploadCommentFiles, uploadReactionFiles, uploadSetUpFile };
