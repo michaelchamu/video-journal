@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const VideoSchema = new mongoose.Schema({
-  video_path: {
-    type: String,
-    required: true,
+  videoSnippet: {
+    position: { type: Number },
+    path: { type: String },
   },
   date_created: {
     type: Date,
@@ -11,24 +11,7 @@ const VideoSchema = new mongoose.Schema({
   },
   reactions: [
     {
-      local_reaction: {
-        type: String,
-      },
-      internation_reactions: [
-        {
-          country: {
-            type: String,
-          },
-          date_created: {
-            type: Date,
-            required: true,
-          },
-          video_link: {
-            type: Date,
-            required: true,
-          },
-        },
-      ],
+      reactionPath: { type: String },
     },
   ],
 });
