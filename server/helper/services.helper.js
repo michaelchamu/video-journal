@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
+const fx = require('mkdir-recursive');
 
 const writeFile = (filePath, file) => {
   try {
@@ -11,6 +12,8 @@ const writeFile = (filePath, file) => {
     return err;
   }
 };
+
+// check and create folders returning the newly created folder path
 const uploadFile = (file) => {
   const promise = new Promise((resolve, reject) => {
     const result = writeFile(__dirname, '..', 'videos/interviews', file.hapi.filename, file);
@@ -30,17 +33,66 @@ const uploadFile = (file) => {
   return promise;
 };
 
-const uploadReactionFile = (file) => {
+const uploadReactionFiles = (file, snippet, reaction) => {
+  console.log('here');
   const promise = new Promise((resolve, reject) => {
-    try {
-      const stream = fs.createWriteStream(
-        path.join(__dirname, '..', 'videos/reactions', file.hapi.filename),
-      );
-      // upload video to path
-      file.pipe(stream);
-      resolve({ statusCode: 201, message: 'file uploaded' });
-    } catch (err) {
-      reject(err);
+    // count number of files in direcor
+    const directory = path.join(__dirname, '..', `videos/vs${snippet}/reactions/r${reaction}`);
+    if (!fs.existsSync(directory)) {
+      fx.mkdir(path.join(__dirname, '..', `videos/vs${snippet}/reactions/r${reaction}`), (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          // eslint-disable-next-line no-shadow
+          fs.readdir(directory, (err, contents) => {
+            if (err) reject(err);
+            else {
+              const result = writeFile(
+                path.join(
+                  __dirname,
+                  '..',
+                  `videos/vs${snippet}/reactions/r${reaction}`,
+                  `r${contents.length + 1}.mp4`,
+                ),
+                file,
+              );
+              return result
+                ? resolve({
+                  statusCode: 201,
+                  path: path.join(
+                    `vs${snippet}/reactions/r${reaction}`,
+                    `r${contents.length + 1}.mp4`,
+                  ),
+                })
+                : reject(result);
+            }
+          });
+        }
+      });
+    } else {
+      fs.readdir(directory, (err, contents) => {
+        if (err) reject(err);
+        else {
+          const result = writeFile(
+            path.join(
+              __dirname,
+              '..',
+              `videos/vs${snippet}/reactions/r${reaction}`,
+              `r${contents.length + 1}.mp4`,
+            ),
+            file,
+          );
+          return result
+            ? resolve({
+              statusCode: 201,
+              path: path.join(
+                `vs${snippet}/reactions/r${reaction}`,
+                `r${contents.length + 1}.mp4`,
+              ),
+            })
+            : reject(result);
+        }
+      });
     }
   });
   return promise;
@@ -72,6 +124,7 @@ const uploadSetUpFile = (file, snippet) => {
           })
           : reject(result);
       }
+      reject(new Error('entered incorrect video snippet range'));
     } catch (err) {
       reject(err);
     }
@@ -79,4 +132,4 @@ const uploadSetUpFile = (file, snippet) => {
   return promise;
 };
 
-module.exports = { uploadFile, uploadReactionFile, uploadSetUpFile };
+module.exports = { uploadFile, uploadReactionFiles, uploadSetUpFile };
