@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { MapDisplay } from '../MapDisplay/MapDisplay';
-import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import Button from '@material-ui/core/Button';
+import { fetchItems, saveItems } from '../services/functions.services';
 import { VideoDisplay } from '../VideoDisplay/VideoDisplay';
 import { Uploader } from '../Uploader/Uploader';
 
@@ -12,44 +12,58 @@ const styles = {
 };
 class Home extends Component {
     state = {
-        payload: {},
+        payload: fetchItems(),
         open: false,
         openDialogue: false,
         video: null
     };
 
     componentDidMount() {
-        this.fetchItems('http://localhost:7000/api/video');
+        fetchItems().then(result => {
+            this.setState({
+                payload: result
+            });
+        });
     }
     onOpenModal = videolink => {
         this.setState({ open: true, video: videolink });
     };
 
+    saveComment = event => {
+        event.preventDefault();
+        let form = new FormData();
+        form.append('longitude', event.target.longitude.value);
+        form.append('latitude', event.target.latitude.value);
+        form.append('video', event.target.video.files[0]);
+
+        saveItems(form).then(result => {
+            console.log(result);
+        });
+    };
+
     onCloseModal = () => {
         this.setState({ open: false, video: null });
     };
-    handleClose = () => {
+    handleClose = form => {
         this.setState({ openDialogue: false });
     };
     handleClickOpen = () => {
         this.setState({ openDialogue: true });
     };
-    fetchItems = apiLink => {
-        axios.get(apiLink).then(result => {
-            this.setState({
-                payload: result.data
-            });
-        });
-    };
+    fetchItems = apiLink => {};
 
     render() {
         const { open } = this.state;
         return (
             <div>
-                <MapDisplay
-                    data={this.state.payload}
-                    onOpenModal={this.onOpenModal}
-                />
+                {this.state.payload ? (
+                    <MapDisplay
+                        data={this.state.payload}
+                        onOpenModal={this.onOpenModal}
+                    />
+                ) : (
+                    ''
+                )}
 
                 {this.state.video ? (
                     <div style={styles}>
@@ -63,6 +77,7 @@ class Home extends Component {
                                     <Uploader
                                         openDialogue={this.state.openDialogue}
                                         handleClose={this.handleClose}
+                                        saveComment={this.saveComment}
                                     />
                                 </center>
                             </div>

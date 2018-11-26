@@ -13,6 +13,18 @@ const styles = theme => ({
         margin: theme.spacing.unit
     }
 });
+let longitude;
+let latitude;
+navigator.geolocation.getCurrentPosition(
+    position => {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+    },
+    err => {
+        console.log(err);
+    }
+);
+
 const Uploader = props => {
     const classes = styles;
     return (
@@ -22,60 +34,73 @@ const Uploader = props => {
                 onClose={props.handleClose}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email
-                        address here. We will send updates occasionally.
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="comment"
-                        label="Comment"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="longitude"
-                        label="Longitude"
-                        type="number"
-                        fullWidth
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="latitude"
-                        label="Latitude"
-                        type="number"
-                        fullWidth
-                    />
-                    <input
-                        accept="video/*"
-                        id="icon-button-file"
-                        type="file"
-                        style={{ display: 'none' }}
-                    />
-                    <label htmlFor="icon-button-file">
-                        <IconButton
+                <form
+                    id="content-form"
+                    encType="multipart/form-data"
+                    onSubmit={event => props.saveComment(event)}
+                >
+                    <DialogTitle id="form-dialog-title">Comment</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            To submit a reaction to this video to this website,
+                            please enter the details here.
+                        </DialogContentText>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            name="comment"
+                            label="Comment"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            name="longitude"
+                            label="Longitude"
+                            type="number"
+                            value={longitude}
+                            fullWidth
+                            required
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            name="latitude"
+                            label="Latitude"
+                            type="number"
+                            value={latitude}
+                            fullWidth
+                            required
+                        />
+                        <input
+                            accept="video/*"
+                            id="icon-button-file"
+                            type="file"
+                            name="video"
+                            style={{ display: 'none' }}
+                            required
+                        />
+                        <label htmlFor="icon-button-file">
+                            <IconButton
+                                color="primary"
+                                className={classes.button}
+                                component="span"
+                            >
+                                <PhotoCamera />
+                            </IconButton>
+                        </label>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            type="submit"
+                            form="content-form"
                             color="primary"
-                            className={classes.button}
-                            component="span"
                         >
-                            <PhotoCamera />
-                        </IconButton>
-                    </label>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={props.handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={props.handleClose} color="primary">
-                        Subscribe
-                    </Button>
-                </DialogActions>
+                            Submit
+                        </Button>
+                    </DialogActions>
+                </form>
             </Dialog>
         </div>
     );
