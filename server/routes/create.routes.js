@@ -1,29 +1,32 @@
-const { uploadFile } = require('../helper/services.helper');
+const { uploadSetUpFile } = require('../helper/services.helper');
 const { Video } = require('../models/Video.model');
 
-module.exports = [{
-  method: ['POST'],
-  path: '/api/video',
-  config: {
-    payload: {
-      maxBytes: 1000 * 1000 * 50,
-      output: 'stream',
+module.exports = [
+  {
+    method: ['POST'],
+    path: '/api/video/setup',
+    config: {
+      payload: {
+        maxBytes: 1000 * 1000 * 50,
+        output: 'stream',
+      },
     },
+    handler: (request, h) => uploadSetUpFile(request.payload.video, request.payload.snippet)
+      .then((result, err) => {
+        // attempt save metadata
+        if (err) h.response({ statusCode: 400, err });
+        else {
+          const video = Video({
+            'videoSnippet.position': request.payload.snippet,
+            'videoSnippet.path': result.path,
+            date_created: new Date(),
+          });
+          return video.save().then((snippet) => {
+            if (!snippet) return h.response({ statusCode: 400, err });
+            return h.response({ statusCode: 201, message: 'created' });
+          });
+        }
+      })
+      .catch(err => h.response({ statusCode: 400, err })),
   },
-  handler: (request, h) => uploadFile(request.payload.video).then((result, err) => {
-    if (err) {
-      h.response({ statusCode: 400, err });
-    }
-    // get video, longitude, latitude
-    const video = new Video({
-      video_path: request.payload.video.hapi.filename,
-      'location.type': 'Point',
-      'location.coordinates': [request.payload.longitude, request.payload.latitude],
-      date_created: new Date(),
-    });
-    return video.save().then(() => {
-      if (err) return h.response({ statusCode: 400, err });
-      return h.response({ statusCode: 201, message: 'created' });
-    }).catch(err => h.response({ statusCode: 400, err }));
-  }),
-}];
+];
