@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import { MapDisplay } from '../MapDisplay/MapDisplay';
-import Modal from 'react-responsive-modal';
-import Button from '@material-ui/core/Button';
-import { fetchItems, saveItems } from '../services/functions.services';
-import { VideoDisplay } from '../VideoDisplay/VideoDisplay';
-import { Uploader } from '../Uploader/Uploader';
+import { Tweets } from '../Tweets/Tweets';
+import { News } from '../News/News';
 
-const styles = {
-    fontFamily: 'sans-serif',
-    textAlign: 'center'
-};
+import { fetchItems, saveItems } from '../services/functions.services';
 class Home extends Component {
     state = {
         payload: fetchItems(),
@@ -53,39 +46,46 @@ class Home extends Component {
     fetchItems = apiLink => {};
 
     render() {
-        const { open } = this.state;
         return (
-            <div>
-                {this.state.payload ? (
-                    <MapDisplay
-                        data={this.state.payload}
-                        onOpenModal={this.onOpenModal}
-                    />
-                ) : (
-                    ''
-                )}
+            <div className="row">
+                <div
+                    className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
+                    styles={{ paddingRight: '0px !important' }}
+                >
+                    <Tweets />
+                    <hr />
+                    <News />
+                </div>
 
-                {this.state.video ? (
-                    <div style={styles}>
-                        <Modal open={open} onClose={this.onCloseModal} center>
-                            <VideoDisplay video={this.state.video} />
-                            <div className="row">
-                                <center>
-                                    <Button onClick={this.handleClickOpen}>
-                                        <b>REACT TO THIS VIDEO</b>
-                                    </Button>
-                                    <Uploader
-                                        openDialogue={this.state.openDialogue}
-                                        handleClose={this.handleClose}
-                                        saveComment={this.saveComment}
-                                    />
-                                </center>
+                <div className="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">
+                    <div className="row" styles={{ margin: '0px !important;' }}>
+                        <div
+                            className="col-md-3 col-lg-3"
+                            style={{
+                                backgroundColor: 'orange',
+                                paddingbottom: '20px',
+                                paddingTop: '18px',
+                                display: 'inline-block'
+                            }}
+                            id="videoSnippet"
+                        />
+                        <div className="row">
+                            <div
+                                className="container testimonial-group"
+                                style={{ marginRight: '0px' }}
+                            >
+                                <div className="row text-center">
+                                    <div className="col-xs-4" id="video1" />
+                                    <div className="col-xs-4" id="video2" />
+                                    <div className="col-xs-4" id="video3" />
+                                    <div className="col-xs-4" id="video4" />
+                                    <div className="col-xs-4" id="video5" />
+                                    <div className="col-xs-4" id="video6" />
+                                </div>
                             </div>
-                        </Modal>
+                        </div>
                     </div>
-                ) : (
-                    ''
-                )}
+                </div>
             </div>
         );
     }
