@@ -18,6 +18,7 @@ const InternationalCommentsSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  thumbnail: { type: String },
 });
 
 const InternationalComments = mongoose.model('InternationalComments', InternationalCommentsSchema);
