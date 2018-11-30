@@ -32,10 +32,14 @@ module.exports = [
               'videoSnippet.thumbnail': success,
               date_created: new Date(),
             });
-            return video.save().then((snippet) => {
-              if (!snippet) return h.response({ statusCode: 400, err });
-              return h.response({ statusCode: 201, message: 'created' });
-            });
+
+            return video
+              .save()
+              .then((snippet) => {
+                if (!snippet) return h.response({ statusCode: 400, err });
+                return h.response({ statusCode: 201, message: 'created' });
+              })
+              .catch(saveError => h.response({ statusCode: 400, saveError }));
           });
         }
       })
