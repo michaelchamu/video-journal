@@ -1,7 +1,12 @@
 const { ObjectID } = require('mongodb');
+const path = require('path');
 const { Video } = require('../models/Video.model');
 const { InternationalComments } = require('../models/Comment.model');
-const { uploadReactionFiles, uploadCommentFiles } = require('../helper/services.helper');
+const {
+  uploadReactionFiles,
+  uploadCommentFiles,
+  generateThumbnail,
+} = require('../helper/services.helper');
 
 module.exports = [
   {
@@ -13,31 +18,42 @@ module.exports = [
         output: 'stream',
       },
     },
-    handler: (request, h) => Video.find({ 'videoSnippet.position': request.params.snippet }).then((snippet) => {
-      if (snippet.length === 0) return h.response({ statusCode: 404 });
-      return uploadReactionFiles(
-        request.payload.video,
-        request.params.snippet,
-        request.payload.reaction,
-      ).then((result, err) => {
-        if (err) return err;
+    handler: (request, h) => Video.find({ 'videoSnippet.position': request.params.snippet })
+      .then((snippet) => {
+        if (snippet.length === 0) return h.response({ statusCode: 404 });
+        return uploadReactionFiles(
+          request.payload.video,
+          request.params.snippet,
+          request.payload.reaction,
+        ).then((result, err) => {
+          if (err) return err;
+          const filePath = path.join(
+            __dirname,
+            '..',
+            `videos/vs${request.params.snippet}/reactions/r${request.params.snippet}`,
+            `r${request.payload.reaction}.mp4`,
+          );
+          return generateThumbnail(filePath).then((success, error) => {
+            if (error) return error;
 
-        // else save the reaction to the array of reactions
-        return Video.findByIdAndUpdate(
-          // eslint-disable-next-line no-underscore-dangle
-          { _id: snippet[0]._id },
-          {
-            $push: {
-              reactions: { reactionPath: result.path },
-            },
-          },
-        )
-          .then(video => (video.length === 0
-            ? h.response({ statusCode: 404 })
-            : h.response({ statusCode: 200 })))
-          .catch(error => h.response({ statusCode: 404, error }));
-      });
-    }),
+            // else save the reaction to the array of reactions
+            return Video.findByIdAndUpdate(
+              // eslint-disable-next-line no-underscore-dangle
+              { _id: snippet[0]._id },
+              {
+                $push: {
+                  reactions: { reactionPath: result.path, thumbnail: success },
+                },
+              },
+            )
+              .then(video => (video.length === 0
+                ? h.response({ statusCode: 404 })
+                : h.response({ statusCode: 200 })))
+              .catch(othererror => h.response({ statusCode: 404, othererror }));
+          });
+        });
+      })
+      .catch(unknownerror => h.response({ statusCode: 400, unknownerror })),
   },
   {
     method: ['PATCH'],
@@ -56,18 +72,22 @@ module.exports = [
         request.payload.reaction,
       ).then((result, error) => {
         if (error) return h.response({ statusCode: 400, error });
+        const filePath = path.join(__dirname, '..', 'videos/', result.path);
 
-        const comment = new InternationalComments({
-          reactionId: ObjectID(request.params.reaction),
-          country: request.payload.country,
-          commentPath: result.path,
-          dateCreated: new Date(),
+        return generateThumbnail(filePath).then((thumbnail) => {
+          const comment = new InternationalComments({
+            reactionId: ObjectID(request.params.reaction),
+            country: request.payload.country,
+            commentPath: result.path,
+            thumbnail,
+            dateCreated: new Date(),
+          });
+          return comment
+            .save()
+            .then(addedComment => (comment.length === 0
+              ? h.response({ statusCode: 404, message: 'value not added' })
+              : h.response({ statusCode: 201, addedComment })));
         });
-        return comment
-          .save()
-          .then(addedComment => (comment.length === 0
-            ? h.response({ statusCode: 404, message: 'value not added' })
-            : h.response({ statusCode: 201, addedComment })));
       });
     }),
   },
