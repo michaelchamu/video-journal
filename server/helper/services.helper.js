@@ -16,18 +16,18 @@ const writeFile = (filePath, file) => {
 
 const generateThumbnail = (filePath) => {
   const promise = new Promise((resolve, reject) => {
-    try {
-      const tg = new ThumbnailGenerator({
-        sourcePath: filePath,
-        thumbnailPath: path.join(__dirname, '..', 'thumbnails/'),
-      });
-      tg.generateOneByPercentCb(90, { filename: `${new Date().toISOString()}.png` }, (thumbnailerror, thumbnail) => {
-        if (thumbnailerror) reject();
+    const tg = new ThumbnailGenerator({
+      sourcePath: filePath,
+      thumbnailPath: path.join(__dirname, '..', 'thumbnails/'),
+    });
+    tg.generateOneByPercentCb(
+      90,
+      { filename: `${new Date().toISOString()}.png` },
+      (thumbnailerror, thumbnail) => {
+        if (thumbnailerror) reject(thumbnailerror);
         resolve(thumbnail);
-      });
-    } catch (err) {
-      reject(err);
-    }
+      },
+    );
   });
   return promise;
 };
