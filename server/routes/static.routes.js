@@ -10,4 +10,13 @@ module.exports = [
       },
     },
   },
+  {
+    method: ['GET'],
+    path: '/assets/thumbnails/{image*}',
+    handler: {
+      directory: {
+        path: Path.join(__dirname, '..', 'thumbnails'),
+      },
+    },
+  },
 ];
