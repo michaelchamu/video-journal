@@ -9,7 +9,9 @@
     display: inline-block;
     float: none;
 }
-
+.force-style {
+    margin-right: 0px !important;
+}
 
 /* Decorations */
 

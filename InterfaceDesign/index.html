@@ -1,161 +1,277 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>AFRICHI Installation</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" type="text/css" href="CSS/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>AFRICHI Installation</title>
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-</head>
-
-<body>
-    <div class="row">
-        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed" style="padding-right: 0px !important;">
-            <div style="height: 50%; overflow: scroll;">
-                <a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a>
-            </div>
-
-            <div class="col-xs-12" style="height:50%; overflow: scroll;">
-                <center>
-                    <h1>News Articles</h1>
-                </center>
-
-                <hr style="color: black;">
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="#">
-                            <img src="images/1.jpg" class="img-responsive img-box img-thumbnail">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h4><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a> - 18/12/2018</h4>
-                        <p>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</p>
-                        <small>By: Donovan Maasz</small>
-                    </div>
+    <body>
+        <div class="row">
+            <div
+                class="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
+                style="padding-right: 0px !important;"
+            >
+                <div style="height: 50%; overflow: scroll;">
+                    <a
+                        class="twitter-timeline"
+                        href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
+                        >Tweets by TwitterDev</a
+                    >
                 </div>
-                <hr>
+                <hr />
+                <div class="col-xs-12" style="height:50%; overflow: scroll;">
+                    <center><h1>News Articles</h1></center>
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="#">
-                            <img src="images/2.jpg" class="img-responsive img-box img-thumbnail">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h4><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a> - 18/12/2018</h4>
-                        <p>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</p>
-                        <small>By: Donovan Maasz</small>
-                    </div>
-                </div>
-                <hr>
+                    <hr style="color: black;" />
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="#">
-                            <img src="images/3.jpg" class="img-responsive img-box img-thumbnail">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h4><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a> - 18/12/2018</h4>
-                        <p>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</p>
-                        <small>By: Donovan Maasz</small>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="#">
-                            <img src="images/5.jpg" class="img-responsive img-box img-thumbnail">
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <h4><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a> - 18/12/2018</h4>
-                        <p>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</p>
-                        <small>By: Donovan Maasz</small>
-                    </div>
-                </div>
-                <hr>
-            </div>
-        </div>
-
-        <div class="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">
-            <div class="row" style="margin: 0px !important;">
-                <div class="col-md-3 col-lg-3" style="background-color: orange; padding-bottom: 20px; padding-top: 18px; display: inline-block;" id="videoSnippet">
-
-                </div>
-                <div class="row">
-                    <div class="container testimonial-group" style="margin-right:0px;">
-                        <div class="row text-center">
-                            <div class="col-xs-4" id="video1"></div>
-                            <div class="col-xs-4" id="video2"></div>
-                            <div class="col-xs-4" id="video3"></div>
-                            <div class="col-xs-4" id="video4"></div>
-                            <div class="col-xs-4" id="video5"></div>
-                            <div class="col-xs-4" id="video6"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <center>
-                        <h4 class="modal-title" id="modal-header">Video Snippet 1</h4>
-                    </center>
-                </div>
-                <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12" id="video_container">
-                            <video class="col-md-12 col-xs-12 col-lg-12 col-sm-12" height="100%" controls id="video">
-                            <source src="Video/video1.mp4" type="video/mp4" id="video_source">
-                            Your browser does not support the video tag.
-                        </video>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a href="#">
+                                <img
+                                    src="images/1.jpg"
+                                    class="img-responsive img-box img-thumbnail"
+                                />
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h4>
+                                <a href="#"
+                                    >5 of Bali’s Spanking New Haunts -
+                                    WanderLuxe Magazine</a
+                                >
+                                - 18/12/2018
+                            </h4>
+                            <p>
+                                Naturally, we know where Bali's newest
+                                restaurants are and what to order, so give that
+                                private chef a rest and check out these spanking
+                                new haunts.
+                            </p>
+                            <small>By: Donovan Maasz</small>
                         </div>
                     </div>
-                    <div class="container testimonial-group" style="width:100%;">
-                        <div class="row text-center">
-                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4" id="reaction1"></div>
-                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4" id="reaction2"></div>
-                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4" id="reaction3"></div>
-                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4" id="reaction4"></div>
-                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4" id="reaction5"></div>
-                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4" id="reaction6"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
+                    <hr />
+
                     <div class="row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
-                            <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a href="#">
+                                <img
+                                    src="images/2.jpg"
+                                    class="img-responsive img-box img-thumbnail"
+                                />
+                            </a>
                         </div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
-                            <button type="button" class="btn btn-success btn-block">Upload</button>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h4>
+                                <a href="#"
+                                    >5 of Bali’s Spanking New Haunts -
+                                    WanderLuxe Magazine</a
+                                >
+                                - 18/12/2018
+                            </h4>
+                            <p>
+                                Naturally, we know where Bali's newest
+                                restaurants are and what to order, so give that
+                                private chef a rest and check out these spanking
+                                new haunts.
+                            </p>
+                            <small>By: Donovan Maasz</small>
                         </div>
-
-
                     </div>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a href="#">
+                                <img
+                                    src="images/3.jpg"
+                                    class="img-responsive img-box img-thumbnail"
+                                />
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h4>
+                                <a href="#"
+                                    >5 of Bali’s Spanking New Haunts -
+                                    WanderLuxe Magazine</a
+                                >
+                                - 18/12/2018
+                            </h4>
+                            <p>
+                                Naturally, we know where Bali's newest
+                                restaurants are and what to order, so give that
+                                private chef a rest and check out these spanking
+                                new haunts.
+                            </p>
+                            <small>By: Donovan Maasz</small>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a href="#">
+                                <img
+                                    src="images/5.jpg"
+                                    class="img-responsive img-box img-thumbnail"
+                                />
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h4>
+                                <a href="#"
+                                    >5 of Bali’s Spanking New Haunts -
+                                    WanderLuxe Magazine</a
+                                >
+                                - 18/12/2018
+                            </h4>
+                            <p>
+                                Naturally, we know where Bali's newest
+                                restaurants are and what to order, so give that
+                                private chef a rest and check out these spanking
+                                new haunts.
+                            </p>
+                            <small>By: Donovan Maasz</small>
+                        </div>
+                    </div>
+                    <hr />
                 </div>
             </div>
 
+            <div class="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">
+                <div class="row" style="margin: 0px !important;">
+                    <div
+                        class="col-md-3 col-lg-3"
+                        style="background-color: orange; padding-bottom: 20px; padding-top: 18px; display: inline-block;"
+                        id="videoSnippet"
+                    ></div>
+                    <div class="row">
+                        <div
+                            class="container testimonial-group"
+                            style="margin-right:0px;"
+                        >
+                            <div class="row text-center">
+                                <div class="col-xs-4" id="video1"></div>
+                                <div class="col-xs-4" id="video2"></div>
+                                <div class="col-xs-4" id="video3"></div>
+                                <div class="col-xs-4" id="video4"></div>
+                                <div class="col-xs-4" id="video5"></div>
+                                <div class="col-xs-4" id="video6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-</body>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                        >
+                            &times;
+                        </button>
+                        <center>
+                            <h4 class="modal-title" id="modal-header">
+                                Video Snippet 1
+                            </h4>
+                        </center>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12" id="video_container">
+                                <video
+                                    class="col-md-12 col-xs-12 col-lg-12 col-sm-12"
+                                    height="100%"
+                                    controls
+                                    id="video"
+                                >
+                                    <source
+                                        src="Video/video1.mp4"
+                                        type="video/mp4"
+                                        id="video_source"
+                                    />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div
+                            class="container testimonial-group"
+                            style="width:100%;"
+                        >
+                            <div class="row text-center">
+                                <div
+                                    class="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                                    id="reaction1"
+                                ></div>
+                                <div
+                                    class="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                                    id="reaction2"
+                                ></div>
+                                <div
+                                    class="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                                    id="reaction3"
+                                ></div>
+                                <div
+                                    class="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                                    id="reaction4"
+                                ></div>
+                                <div
+                                    class="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                                    id="reaction5"
+                                ></div>
+                                <div
+                                    class="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                                    id="reaction6"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                <button
+                                    type="button"
+                                    class="btn btn-default btn-block"
+                                    data-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                <button
+                                    type="button"
+                                    class="btn btn-success btn-block"
+                                >
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="Javascript/articles.js"></script>
-<script src="Javascript/index.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="Javascript/articles.js"></script>
+    <script src="Javascript/index.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+    ></script>
 </html>

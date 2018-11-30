@@ -17,8 +17,9 @@ const News = () => {
                               <div key={index}>
                                   <div className="row">
                                       <div className="col-xs-12 col-sm-12 col-md-12">
-                                          <a href="#">
+                                          <a href={article.uri}>
                                               <img
+                                                  alt={''}
                                                   src={`images/${index +
                                                       1}.jpg`}
                                                   className="img-responsive img-box img-thumbnail"
@@ -27,8 +28,10 @@ const News = () => {
                                       </div>
                                       <div className="col-xs-12 col-sm-12 col-md-12">
                                           <h4>
-                                              <a href="#">{article.title}</a>-
-                                              {article.date}
+                                              <a href={article.uri}>
+                                                  {article.title}
+                                              </a>
+                                              -{article.date}
                                           </h4>
                                           <p>Placeholder content</p>
                                           <small>By:{article.author}</small>

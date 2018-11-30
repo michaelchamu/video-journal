@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Tweets } from '../Tweets/Tweets';
 import { News } from '../News/News';
-
+import { ModalDisplay } from '../Modal/Modal';
+import { Gallery } from '../Gallery/Gallery';
 import { fetchItems, saveItems } from '../services/functions.services';
 class Home extends Component {
     state = {
         payload: fetchItems(),
-        open: false,
-        openDialogue: false,
-        video: null
+        videolink: '',
+        video: null,
+        open: false
     };
 
     componentDidMount() {
@@ -18,15 +19,31 @@ class Home extends Component {
             });
         });
     }
-    onOpenModal = videolink => {
-        this.setState({ open: true, video: videolink });
+
+    chooseVideo = video => {
+        this.setState({ videolink: video });
+    };
+    reloadContainer = e => e.target.parentElement.reload();
+    openModal = video => {
+        console.log('modal open');
+        this.setState({ open: true, payload: video });
+        console.log({ open: true, payload: this.state.payload });
+    };
+    onCloseModal = () => {
+        console.log('modal closed');
+        fetchItems().then(result => {
+            this.setState({
+                payload: result,
+                open: false
+            });
+            console.log({ open: this.state.open, payload: this.state.payload });
+        });
     };
 
     saveComment = event => {
         event.preventDefault();
         let form = new FormData();
-        form.append('longitude', event.target.longitude.value);
-        form.append('latitude', event.target.latitude.value);
+        form.append('country', event.target.longitude.value);
         form.append('video', event.target.video.files[0]);
 
         saveItems(form).then(result => {
@@ -34,9 +51,21 @@ class Home extends Component {
         });
     };
 
-    onCloseModal = () => {
-        this.setState({ open: false, video: null });
+    changeSrc = (videolink, key) => {
+        console.log(key);
+        return this.setState({ videolink: videolink });
+        //     <Testimonials videolink={videolink} />
+        // <video
+        //     src={videolink}
+        //     key={key}
+        //     className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
+        //     height="100%"
+        //     controls
+        // >
+        //     {/* <source src={videolink} type="video/mp4" id="video_source" /> */}
+        // </video>
     };
+
     handleClose = form => {
         this.setState({ openDialogue: false });
     };
@@ -50,7 +79,7 @@ class Home extends Component {
             <div className="row">
                 <div
                     className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
-                    styles={{ paddingRight: '0px !important' }}
+                    style={{ paddingRight: '0px !important' }}
                 >
                     <Tweets />
                     <hr />
@@ -58,34 +87,21 @@ class Home extends Component {
                 </div>
 
                 <div className="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">
-                    <div className="row" styles={{ margin: '0px !important;' }}>
-                        <div
-                            className="col-md-3 col-lg-3"
-                            style={{
-                                backgroundColor: 'orange',
-                                paddingbottom: '20px',
-                                paddingTop: '18px',
-                                display: 'inline-block'
-                            }}
-                            id="videoSnippet"
-                        />
-                        <div className="row">
-                            <div
-                                className="container testimonial-group"
-                                style={{ marginRight: '0px' }}
-                            >
-                                <div className="row text-center">
-                                    <div className="col-xs-4" id="video1" />
-                                    <div className="col-xs-4" id="video2" />
-                                    <div className="col-xs-4" id="video3" />
-                                    <div className="col-xs-4" id="video4" />
-                                    <div className="col-xs-4" id="video5" />
-                                    <div className="col-xs-4" id="video6" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Gallery
+                        videos={this.state.payload}
+                        openModal={this.openModal}
+                        closeModal={this.onCloseModal}
+                    />
                 </div>
+
+                {this.state.open ? (
+                    <ModalDisplay
+                        open={this.state.open}
+                        onClose={this.onCloseModal}
+                        videos={this.state.payload}
+                        updateSrc={this.changeSrc}
+                    />
+                ) : null}
             </div>
         );
     }
