@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const ThumbnailGenerator = require('video-thumbnail-generator').default;
 const _ = require('lodash');
 const fx = require('mkdir-recursive');
 
@@ -13,6 +14,23 @@ const writeFile = (filePath, file) => {
   }
 };
 
+const generateThumbnail = (filePath) => {
+  const promise = new Promise((resolve, reject) => {
+    try {
+      const tg = new ThumbnailGenerator({
+        sourcePath: filePath,
+        thumbnailPath: path.join(__dirname, '..', 'thumbnails/'),
+      });
+      tg.generateOneByPercentCb(90, { filename: `${new Date().toISOString()}.png` }, (thumbnailerror, thumbnail) => {
+        if (thumbnailerror) reject();
+        resolve(thumbnail);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+  return promise;
+};
 // check and create folders returning the newly created folder path
 const uploadCommentFiles = (file, snippet, reaction) => {
   const promise = new Promise((resolve, reject) => {
@@ -140,6 +158,7 @@ const uploadSetUpFile = (file, snippet) => {
       if (_.includes(videoSnippets, snippet)) {
         const directory = path.join(__dirname, '..', `videos/vs${snippet}`);
         let result = false;
+
         if (!fs.existsSync(directory)) {
           fs.mkdirSync(directory);
           result = writeFile(
@@ -167,4 +186,9 @@ const uploadSetUpFile = (file, snippet) => {
   return promise;
 };
 
-module.exports = { uploadCommentFiles, uploadReactionFiles, uploadSetUpFile };
+module.exports = {
+  uploadCommentFiles,
+  uploadReactionFiles,
+  uploadSetUpFile,
+  generateThumbnail,
+};
