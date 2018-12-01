@@ -3,12 +3,17 @@ import { Tweets } from '../Tweets/Tweets';
 import { News } from '../News/News';
 import { ModalDisplay } from '../Modal/Modal';
 import { Gallery } from '../Gallery/Gallery';
-import { fetchItems, saveItems } from '../services/functions.services';
+import {
+    fetchItems,
+    saveItems,
+    getComments
+} from '../services/functions.services';
 class Home extends Component {
     state = {
         payload: fetchItems(),
         videolink: '',
         video: null,
+        comments: null,
         open: false
     };
 
@@ -57,8 +62,9 @@ class Home extends Component {
 
     changeSrc = (videolink, id) => {
         //get comments
-
-        return this.setState({ videolink: videolink });
+        getComments(id).then(comments => {
+            return this.setState({ videolink: videolink, comments: comments });
+        });
     };
 
     handleClose = form => {
@@ -93,6 +99,7 @@ class Home extends Component {
                         open={this.state.open}
                         onClose={this.onCloseModal}
                         videos={this.state.payload}
+                        comments={this.state.comments}
                         updateSrc={this.changeSrc}
                         video={this.state.videolink}
                     />
