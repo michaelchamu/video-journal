@@ -39,10 +39,10 @@ class Home extends Component {
         console.log({ open: true, payload: this.state.payload });
     };
     onCloseModal = () => {
-        console.log('modal closed');
         fetchItems().then(result => {
             this.setState({
                 payload: result,
+                comments: null,
                 open: false
             });
             console.log({ open: this.state.open, payload: this.state.payload });
