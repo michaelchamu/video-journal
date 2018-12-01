@@ -2,7 +2,7 @@ import { API_URL } from '../configs/config';
 const axios = require('axios');
 const fetchItems = () => {
     return axios
-        .get(API_URL)
+        .get(`${API_URL}video`)
         .then(result => {
             return result.data;
         })

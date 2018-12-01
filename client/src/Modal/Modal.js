@@ -16,8 +16,13 @@ const ModalDisplay = props => {
                                         className="modal-title"
                                         id="modal-header"
                                     >
-                                        Video Snippet{' '}
-                                        {props.videos.videoSnippet.position}
+                                        {props.comments
+                                            ? 'Reaction comments'
+                                            : `Video Snippet 
+                                              ${
+                                                  props.videos.videoSnippet
+                                                      .position
+                                              }`}
                                     </h4>
                                 </center>
                             </div>
@@ -31,16 +36,7 @@ const ModalDisplay = props => {
                                             className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
                                             height="100%"
                                             controls
-                                        >
-                                            {/* <source src={videolink} type="video/mp4" id="video_source" /> */}
-                                        </video>
-
-                                        {/* {props.updateSrc(
-                                            `${BASE_VIDEO_URL}${
-                                                props.videos.videoSnippet.path
-                                            }`,
-                                            props.videos._id
-                                        )} */}
+                                        />
                                     </div>
                                 </div>
                                 <div
@@ -61,7 +57,8 @@ const ModalDisplay = props => {
                                                                 props.updateSrc(
                                                                     `${
                                                                         reaction.reactionPath
-                                                                    }`
+                                                                    }`,
+                                                                    reaction._id
                                                                 )
                                                             }
                                                             src={`${THUMBNAILS}${

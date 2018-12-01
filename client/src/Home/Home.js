@@ -47,7 +47,7 @@ class Home extends Component {
     saveComment = event => {
         event.preventDefault();
         let form = new FormData();
-        form.append('country', event.target.longitude.value);
+        form.append('country', event.target.country.value);
         form.append('video', event.target.video.files[0]);
 
         saveItems(form).then(result => {
@@ -55,19 +55,10 @@ class Home extends Component {
         });
     };
 
-    changeSrc = (videolink, key) => {
-        console.log(key);
+    changeSrc = (videolink, id) => {
+        //get comments
+
         return this.setState({ videolink: videolink });
-        //     <Testimonials videolink={videolink} />
-        // <video
-        //     src={videolink}
-        //     key={key}
-        //     className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-        //     height="100%"
-        //     controls
-        // >
-        //     {/* <source src={videolink} type="video/mp4" id="video_source" /> */}
-        // </video>
     };
 
     handleClose = form => {
@@ -77,7 +68,6 @@ class Home extends Component {
         this.setState({ openDialogue: true });
     };
     fetchItems = apiLink => {};
-
     render() {
         return (
             <div className="row">
