@@ -22,4 +22,15 @@ const saveItems = data => {
         });
 };
 
-export { fetchItems, saveItems };
+const getComments = id => {
+    return axios
+        .get(`${API_URL}comments/${id}`)
+        .then(result => {
+            return result;
+        })
+        .catch(err => {
+            return err;
+        });
+};
+
+export { fetchItems, saveItems, getComments };
