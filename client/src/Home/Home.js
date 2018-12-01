@@ -63,7 +63,11 @@ class Home extends Component {
     changeSrc = (videolink, id) => {
         //get comments
         getComments(id).then(comments => {
-            return this.setState({ videolink: videolink, comments: comments });
+            console.log(comments.data);
+            return this.setState({
+                videolink: videolink,
+                comments: comments.data
+            });
         });
     };
 
