@@ -1,7 +1,9 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 import { BASE_VIDEO_URL } from '../configs/config';
+import { THUMBNAILS } from '../configs/config';
 const ModalDisplay = props => {
+    console.log(props.video);
     return (
         <div>
             <Modal open={props.open} onClose={props.onClose} center>
@@ -24,7 +26,7 @@ const ModalDisplay = props => {
                                     <div className="col-md-12">
                                         <video
                                             src={`${BASE_VIDEO_URL}${
-                                                props.videos.videoSnippet.path
+                                                props.video
                                             }`}
                                             className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
                                             height="100%"
@@ -57,13 +59,12 @@ const ModalDisplay = props => {
                                                             alt={''}
                                                             onClick={() =>
                                                                 props.updateSrc(
-                                                                    `${BASE_VIDEO_URL}${
+                                                                    `${
                                                                         reaction.reactionPath
-                                                                    }`,
-                                                                    reaction._id
+                                                                    }`
                                                                 )
                                                             }
-                                                            src={`${BASE_VIDEO_URL}${
+                                                            src={`${THUMBNAILS}${
                                                                 reaction.thumbnail
                                                             }`}
                                                             className="col-xs-12 col-sm-12"

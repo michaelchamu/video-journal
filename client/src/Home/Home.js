@@ -23,10 +23,14 @@ class Home extends Component {
     chooseVideo = video => {
         this.setState({ videolink: video });
     };
-    reloadContainer = e => e.target.parentElement.reload();
+
     openModal = video => {
-        console.log('modal open');
-        this.setState({ open: true, payload: video });
+        this.setState({
+            open: true,
+            payload: video,
+            videolink: video.videoSnippet.path
+        });
+
         console.log({ open: true, payload: this.state.payload });
     };
     onCloseModal = () => {
@@ -100,6 +104,7 @@ class Home extends Component {
                         onClose={this.onCloseModal}
                         videos={this.state.payload}
                         updateSrc={this.changeSrc}
+                        video={this.state.videolink}
                     />
                 ) : null}
             </div>
