@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 import { Comments } from '../Comments/Comments';
+import { Reactions } from '../Reactions/Reactions';
 import { BASE_VIDEO_URL } from '../configs/config';
-import { THUMBNAILS } from '../configs/config';
 const ModalDisplay = props => {
     console.log(props.comments);
     return (
@@ -51,32 +51,10 @@ const ModalDisplay = props => {
                                                 updateSrc={props.updateSrc}
                                             />
                                         ) : (
-                                            props.videos.reactions.map(
-                                                (reaction, index) => {
-                                                    return (
-                                                        <div
-                                                            key={index}
-                                                            className="col-xs-4 col-sm-4 col-lg-4 col-md-4"
-                                                        >
-                                                            <img
-                                                                alt={''}
-                                                                onClick={() =>
-                                                                    props.updateSrc(
-                                                                        `${
-                                                                            reaction.reactionPath
-                                                                        }`,
-                                                                        reaction._id
-                                                                    )
-                                                                }
-                                                                src={`${THUMBNAILS}${
-                                                                    reaction.thumbnail
-                                                                }`}
-                                                                className="col-xs-12 col-sm-12"
-                                                            />
-                                                        </div>
-                                                    );
-                                                }
-                                            )
+                                            <Reactions
+                                                videos={props.videos}
+                                                updateSrc={props.updateSrc}
+                                            />
                                         )}
                                     </div>
                                 </div>

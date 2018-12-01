@@ -30,7 +30,7 @@ module.exports = [
           const filePath = path.join(
             __dirname,
             '..',
-            `videos/vs${request.params.snippet}/reactions/r${request.params.snippet}`,
+            `videos/vs${request.params.snippet}/reactions/r${request.payload.reaction}`,
             `r${request.payload.reaction}.mp4`,
           );
           return generateThumbnail(filePath).then((success, error) => {

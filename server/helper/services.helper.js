@@ -24,6 +24,7 @@ const generateThumbnail = (filePath) => {
       90,
       { filename: `${new Date().toISOString()}.png` },
       (thumbnailerror, thumbnail) => {
+        console.log(thumbnailerror)
         if (thumbnailerror) reject(thumbnailerror);
         resolve(thumbnail);
       },
