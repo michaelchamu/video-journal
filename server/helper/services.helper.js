@@ -172,5 +172,4 @@ module.exports = {
   uploadCommentFiles,
   uploadReactionFiles,
   uploadSetUpFile,
-  generateThumbnail,
 };

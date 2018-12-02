@@ -1,6 +1,5 @@
 import React from "react";
 import VideoThumbnail from "react-video-thumbnail";
-import { THUMBNAILS } from "../configs/config";
 
 const Reactions = props => {
     console.log(props.videos ? "yes" : null);
