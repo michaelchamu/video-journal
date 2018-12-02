@@ -38,6 +38,19 @@ class Home extends Component {
 
         console.log({ open: true, payload: this.state.payload });
     };
+
+    openReactionModal = (reaction, id) => {
+        console.log(reaction.reactionPath);
+        getComments(id).then(comments => {
+            console.log(comments.data);
+            return this.setState({
+                open: true,
+                videolink: reaction.reactionPath,
+                comments: comments.data
+            });
+        });
+    };
+
     onCloseModal = () => {
         fetchItems().then(result => {
             this.setState({
@@ -63,7 +76,6 @@ class Home extends Component {
     changeSrc = (videolink, id) => {
         //get comments
         getComments(id).then(comments => {
-            console.log(comments.data);
             return this.setState({
                 videolink: videolink,
                 comments: comments.data
@@ -94,6 +106,7 @@ class Home extends Component {
                     <Gallery
                         videos={this.state.payload}
                         openModal={this.openModal}
+                        openReactionModal={this.openReactionModal}
                         closeModal={this.onCloseModal}
                     />
                 </div>

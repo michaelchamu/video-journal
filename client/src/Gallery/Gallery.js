@@ -22,15 +22,16 @@ const Gallery = props => {
                                       display: 'inline-block'
                                   }}
                               >
-                                  <VideoThumbnail
-                                      videoUrl={`${BASE_VIDEO_URL}${
-                                          videos.videoSnippet.path
-                                      }`}
-                                      thumbnailHandler={thumbnail =>
-                                          console.log(thumbnail)
-                                      }
-                                      className="col-xs-12 col-sm-12"
-                                  />
+                                  <a
+                                      href="#"
+                                      onClick={() => props.openModal(videos)}
+                                  >
+                                      <VideoThumbnail
+                                          videoUrl={`${BASE_VIDEO_URL}${
+                                              videos.videoSnippet.path
+                                          }`}
+                                      />
+                                  </a>
                               </div>
                               <div className="row">
                                   <div className="container testimonial-group force-style">
@@ -43,17 +44,21 @@ const Gallery = props => {
                                                           className="col-xs-4"
                                                           id="video1"
                                                       >
-                                                          <VideoThumbnail
-                                                              videoUrl={`${BASE_VIDEO_URL}${
-                                                                  reactions.reactionPath
-                                                              }`}
-                                                              thumbnailHandler={thumbnail =>
-                                                                  console.log(
-                                                                      reactions
+                                                          <a
+                                                              href="#"
+                                                              onClick={() =>
+                                                                  props.openReactionModal(
+                                                                      reactions,
+                                                                      reactions._id
                                                                   )
                                                               }
-                                                              className="col-xs-12 col-sm-12"
-                                                          />
+                                                          >
+                                                              <VideoThumbnail
+                                                                  videoUrl={`${BASE_VIDEO_URL}${
+                                                                      reactions.reactionPath
+                                                                  }`}
+                                                              />
+                                                          </a>
                                                       </div>
                                                   );
                                               }
