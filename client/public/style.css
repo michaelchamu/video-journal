@@ -44,3 +44,6 @@
 .scrollit {
     float: right;
 }
+div.react-thumbnail-generator img {
+    width: 100% !important;
+}
