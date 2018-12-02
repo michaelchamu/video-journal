@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const ThumbnailGenerator = require('video-thumbnail-generator').default;
 const _ = require('lodash');
 const fx = require('mkdir-recursive');
 
@@ -14,24 +13,6 @@ const writeFile = (filePath, file) => {
   }
 };
 
-const generateThumbnail = (filePath) => {
-  const promise = new Promise((resolve, reject) => {
-    const tg = new ThumbnailGenerator({
-      sourcePath: filePath,
-      thumbnailPath: path.join(__dirname, '..', 'thumbnails/'),
-    });
-    tg.generateOneByPercentCb(
-      90,
-      { filename: `${new Date().toISOString()}.png` },
-      (thumbnailerror, thumbnail) => {
-        console.log(thumbnailerror)
-        if (thumbnailerror) reject(thumbnailerror);
-        resolve(thumbnail);
-      },
-    );
-  });
-  return promise;
-};
 // check and create folders returning the newly created folder path
 const uploadCommentFiles = (file, snippet, reaction) => {
   const promise = new Promise((resolve, reject) => {
@@ -58,14 +39,14 @@ const uploadCommentFiles = (file, snippet, reaction) => {
               file,
             );
             return result
-              ? resolve({
+                            ? resolve({
                 statusCode: 201,
                 path: path.join(
                   `vs${snippet}/reactions/r${reaction}/comments`,
                   `c${contents.length + 1}.mp4`,
                 ),
               })
-              : reject(result);
+                            : reject(result);
           }
         });
       } else {
@@ -85,14 +66,14 @@ const uploadCommentFiles = (file, snippet, reaction) => {
                   file,
                 );
                 return result
-                  ? resolve({
+                                    ? resolve({
                     statusCode: 201,
                     path: path.join(
                       `vs${snippet}/reactions/r${reaction}/comments`,
                       `c${contents.length + 1}.mp4`,
                     ),
                   })
-                  : reject(result);
+                                    : reject(result);
               }
             });
           }
@@ -124,11 +105,11 @@ const uploadReactionFiles = (file, snippet, reaction) => {
             file,
           );
           return result
-            ? resolve({
+                        ? resolve({
               statusCode: 201,
               path: path.join(`vs${snippet}/reactions/r${reaction}`, `r${reaction}.mp4`),
             })
-            : reject(result);
+                        : reject(result);
         }
       });
     } else {
@@ -142,11 +123,11 @@ const uploadReactionFiles = (file, snippet, reaction) => {
         file,
       );
       return result
-        ? resolve({
+                ? resolve({
           statusCode: 201,
           path: path.join(`vs${snippet}/reactions/r${reaction}`, `r${reaction}.mp4`),
         })
-        : reject(result);
+                : reject(result);
     }
   });
   return promise;
@@ -173,11 +154,11 @@ const uploadSetUpFile = (file, snippet) => {
           );
         }
         return result
-          ? resolve({
+                    ? resolve({
             statusCode: 201,
             path: path.join(`vs${snippet}`, `vs${snippet}.mp4`),
           })
-          : reject(result);
+                    : reject(result);
       }
       reject(new Error('entered incorrect video snippet range'));
     } catch (err) {
