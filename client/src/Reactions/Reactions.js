@@ -1,11 +1,11 @@
 import React from "react";
 import VideoThumbnail from "react-video-thumbnail";
+import { BASE_VIDEO_URL } from "../configs/config";
 
 const Reactions = props => {
     console.log(props.videos ? "yes" : null);
     return (
         <div>
-            {" "}
             {props.videos.reactions
                 ? props.videos.reactions.map((reaction, index) => {
                       return (
@@ -29,7 +29,7 @@ const Reactions = props => {
                           </div>
                       );
                   })
-                : null}{" "}
+                : null}
         </div>
     );
 };

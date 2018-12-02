@@ -1,5 +1,7 @@
-import React from 'react';
-import { THUMBNAILS } from '../configs/config';
+import React from "react";
+import { BASE_VIDEO_URL } from "../configs/config";
+import VideoThumbnail from "react-video-thumbnail";
+
 const Comments = props => {
     console.log(props);
     return (
@@ -10,7 +12,22 @@ const Comments = props => {
                         key={index}
                         className="col-xs-4 col-sm-4 col-lg-4 col-md-4"
                     >
-                        <img
+                        <a
+                            href="#"
+                            onClick={() =>
+                                props.updateSrc(
+                                    comment.commentPath,
+                                    comment._id
+                                )
+                            }
+                        >
+                            <VideoThumbnail
+                                videoUrl={`${BASE_VIDEO_URL}${
+                                    comment.commentPath
+                                }`}
+                            />
+                        </a>
+                        {/* <img
                             alt={''}
                             onClick={() =>
                                 props.updateSrc(
@@ -20,7 +37,7 @@ const Comments = props => {
                             }
                             src={`${THUMBNAILS}${comment.thumbnail}`}
                             className="col-xs-12 col-sm-12"
-                        />
+                        /> */}
                     </div>
                 );
             })}

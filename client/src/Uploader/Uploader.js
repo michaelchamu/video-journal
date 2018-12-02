@@ -1,13 +1,13 @@
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import IconButton from '@material-ui/core/IconButton';
+import React from "react";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import IconButton from "@material-ui/core/IconButton";
 const styles = theme => ({
     button: {
         margin: theme.spacing.unit
@@ -56,20 +56,10 @@ const Uploader = props => {
                         <TextField
                             autoFocus
                             margin="dense"
-                            name="longitude"
-                            label="Longitude"
-                            type="number"
-                            value={longitude}
-                            fullWidth
-                            required
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            name="latitude"
-                            label="Latitude"
-                            type="number"
-                            value={latitude}
+                            name="country"
+                            label="Country"
+                            type="text"
+                            value={country}
                             fullWidth
                             required
                         />
@@ -78,7 +68,7 @@ const Uploader = props => {
                             id="icon-button-file"
                             type="file"
                             name="video"
-                            style={{ display: 'none' }}
+                            style={{ display: "none" }}
                             required
                         />
                         <label htmlFor="icon-button-file">

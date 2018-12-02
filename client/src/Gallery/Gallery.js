@@ -1,6 +1,6 @@
-import React from 'react';
-import VideoThumbnail from 'react-video-thumbnail';
-import { BASE_VIDEO_URL } from '../configs/config';
+import React from "react";
+import VideoThumbnail from "react-video-thumbnail";
+import { BASE_VIDEO_URL } from "../configs/config";
 
 const Gallery = props => {
     return (
@@ -11,15 +11,15 @@ const Gallery = props => {
                           <div
                               key={position}
                               className="row"
-                              style={{ margin: '0px' }}
+                              style={{ margin: "0px" }}
                           >
                               <div
                                   className="col-md-3 col-lg-3"
                                   style={{
-                                      backgroundColor: 'orange',
-                                      paddingBottom: '20px',
-                                      paddingTop: '18px',
-                                      display: 'inline-block'
+                                      backgroundColor: "orange",
+                                      paddingBottom: "20px",
+                                      paddingTop: "18px",
+                                      display: "inline-block"
                                   }}
                               >
                                   <a
@@ -35,7 +35,10 @@ const Gallery = props => {
                               </div>
                               <div className="row">
                                   <div className="container testimonial-group force-style">
-                                      <div className="row text-center">
+                                      <div
+                                          className="row text-center"
+                                          style={{}}
+                                      >
                                           {videos.reactions.map(
                                               (reactions, index) => {
                                                   return (
@@ -43,6 +46,10 @@ const Gallery = props => {
                                                           key={index}
                                                           className="col-xs-4"
                                                           id="video1"
+                                                          style={{
+                                                              verticalAlign:
+                                                                  "center"
+                                                          }}
                                                       >
                                                           <a
                                                               href="#"
