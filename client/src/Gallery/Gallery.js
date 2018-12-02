@@ -1,5 +1,7 @@
 import React from 'react';
-import { THUMBNAILS } from '../configs/config';
+import VideoThumbnail from 'react-video-thumbnail';
+import { BASE_VIDEO_URL } from '../configs/config';
+
 const Gallery = props => {
     return (
         <div>
@@ -20,12 +22,13 @@ const Gallery = props => {
                                       display: 'inline-block'
                                   }}
                               >
-                                  <img
-                                      alt={''}
-                                      onClick={() => props.openModal(videos)}
-                                      src={`${THUMBNAILS}${
-                                          videos.videoSnippet.thumbnail
+                                  <VideoThumbnail
+                                      videoUrl={`${BASE_VIDEO_URL}${
+                                          videos.videoSnippet.path
                                       }`}
+                                      thumbnailHandler={thumbnail =>
+                                          console.log(thumbnail)
+                                      }
                                       className="col-xs-12 col-sm-12"
                                   />
                               </div>
@@ -40,16 +43,15 @@ const Gallery = props => {
                                                           className="col-xs-4"
                                                           id="video1"
                                                       >
-                                                          <img
-                                                              alt={''}
-                                                              onClick={() =>
-                                                                  props.openModal(
-                                                                      videos
+                                                          <VideoThumbnail
+                                                              videoUrl={`${BASE_VIDEO_URL}${
+                                                                  reactions.reactionPath
+                                                              }`}
+                                                              thumbnailHandler={thumbnail =>
+                                                                  console.log(
+                                                                      reactions
                                                                   )
                                                               }
-                                                              src={`${THUMBNAILS}${
-                                                                  reactions.thumbnail
-                                                              }`}
                                                               className="col-xs-12 col-sm-12"
                                                           />
                                                       </div>
