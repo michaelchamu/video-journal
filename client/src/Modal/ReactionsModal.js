@@ -1,7 +1,7 @@
-import React from 'react';
-import Modal from 'react-responsive-modal';
-import { Comments } from '../Comments/Comments';
-import { BASE_VIDEO_URL } from '../configs/config';
+import React from "react";
+import Modal from "react-responsive-modal";
+import { Comments } from "../Comments/Comments";
+import { BASE_VIDEO_URL } from "../configs/config";
 const ReactionsModal = props => {
     console.log(props);
     return (
@@ -29,7 +29,7 @@ const ReactionsModal = props => {
                             </div>
                             <div
                                 className="container testimonial-group"
-                                style={{ width: '100%' }}
+                                style={{ width: "100%" }}
                             >
                                 <div className="row text-center">
                                     {props.comments ? (

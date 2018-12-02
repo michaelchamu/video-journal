@@ -15,10 +15,12 @@ const Reactions = props => {
                           >
                               <a
                                   href="#"
-                                  onClick={props.updateSrc(
-                                      `${reaction.reactionPath}`,
-                                      reaction._id
-                                  )}
+                                  onClick={() =>
+                                      props.updateSrc(
+                                          `${reaction.reactionPath}`,
+                                          reaction._id
+                                      )
+                                  }
                               >
                                   <VideoThumbnail
                                       videoUrl={`${BASE_VIDEO_URL}${

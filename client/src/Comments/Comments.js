@@ -17,7 +17,7 @@ const Comments = props => {
                             onClick={() =>
                                 props.updateSrc(
                                     comment.commentPath,
-                                    comment._id
+                                    comment.reactionId
                                 )
                             }
                         >

@@ -13,20 +13,10 @@ const styles = theme => ({
         margin: theme.spacing.unit
     }
 });
-let longitude;
-let latitude;
-navigator.geolocation.getCurrentPosition(
-    position => {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-    },
-    err => {
-        console.log(err);
-    }
-);
 
 const Uploader = props => {
     const classes = styles;
+    console.log(props);
     return (
         <div>
             <Dialog
@@ -59,7 +49,6 @@ const Uploader = props => {
                             name="country"
                             label="Country"
                             type="text"
-                            value={country}
                             fullWidth
                             required
                         />

@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import { Tweets } from '../Tweets/Tweets';
-import { News } from '../News/News';
-import { ModalDisplay } from '../Modal/Modal';
-import { Gallery } from '../Gallery/Gallery';
+import React, { Component } from "react";
+// import { Tweets } from "../Tweets/Tweets";
+import { News } from "../News/News";
+import { ModalDisplay } from "../Modal/Modal";
+import { Gallery } from "../Gallery/Gallery";
+import { Uploader } from "../Uploader/Uploader";
 import {
     fetchItems,
     saveItems,
     getComments
-} from '../services/functions.services';
+} from "../services/functions.services";
 class Home extends Component {
     state = {
         payload: fetchItems(),
-        videolink: '',
+        videolink: "",
         video: null,
         comments: null,
-        open: false
+        open: false,
+        openDialogue: false
     };
 
     componentDidMount() {
@@ -30,9 +32,11 @@ class Home extends Component {
     };
 
     openModal = video => {
+        console.log(video);
         this.setState({
             open: true,
             payload: video,
+            comments: null,
             videolink: video.videoSnippet.path
         });
 
@@ -65,8 +69,8 @@ class Home extends Component {
     saveComment = event => {
         event.preventDefault();
         let form = new FormData();
-        form.append('country', event.target.country.value);
-        form.append('video', event.target.video.files[0]);
+        form.append("country", event.target.country.value);
+        form.append("video", event.target.video.files[0]);
 
         saveItems(form).then(result => {
             console.log(result);
@@ -76,6 +80,7 @@ class Home extends Component {
     changeSrc = (videolink, id) => {
         //get comments
         getComments(id).then(comments => {
+            console.log(comments);
             return this.setState({
                 videolink: videolink,
                 comments: comments.data
@@ -87,7 +92,7 @@ class Home extends Component {
         this.setState({ openDialogue: false });
     };
     handleClickOpen = () => {
-        this.setState({ openDialogue: true });
+        this.setState({ openDialogue: true, open: false });
     };
     fetchItems = apiLink => {};
     render() {
@@ -95,9 +100,9 @@ class Home extends Component {
             <div className="row">
                 <div
                     className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
-                    style={{ paddingRight: '0px !important' }}
+                    style={{ paddingRight: "0px !important" }}
                 >
-                    <Tweets />
+                    {/* <Tweets /> */}
                     <hr />
                     <News />
                 </div>
@@ -119,6 +124,13 @@ class Home extends Component {
                         comments={this.state.comments}
                         updateSrc={this.changeSrc}
                         video={this.state.videolink}
+                    />
+                ) : null}
+                {this.state.openDialogue ? (
+                    <Uploader
+                        openDialogue={this.state.openDialogue}
+                        handleClose={this.handleClose}
+                        handleClickOpen={this.handleClickOpen}
                     />
                 ) : null}
             </div>
