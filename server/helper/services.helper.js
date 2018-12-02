@@ -14,16 +14,16 @@ const writeFile = (filePath, file) => {
 };
 
 // check and create folders returning the newly created folder path
-const uploadCommentFiles = (file, snippet, reaction) => {
+const uploadCommentFiles = (file, reactionPath) => {
   const promise = new Promise((resolve, reject) => {
-    const directory = path.join(__dirname, '..', `videos/vs${snippet}/reactions/r${reaction}`);
+    const directory = path.join(__dirname, '..', `videos/${reactionPath}`);
     // check if reaction exists
     if (fs.existsSync(directory)) {
       // check if comments directory exists
       const comments = path.join(
         __dirname,
         '..',
-        `videos/vs${snippet}/reactions/r${reaction}/comments`,
+        `videos/${reactionPath}/comments`,
       );
       if (fs.existsSync(comments)) {
         fs.readdir(comments, (err, contents) => {
@@ -33,7 +33,7 @@ const uploadCommentFiles = (file, snippet, reaction) => {
               path.join(
                 __dirname,
                 '..',
-                `videos/vs${snippet}/reactions/r${reaction}/comments`,
+                `videos/${reactionPath}/comments`,
                 `c${contents.length + 1}.mp4`,
               ),
               file,
@@ -42,7 +42,7 @@ const uploadCommentFiles = (file, snippet, reaction) => {
                             ? resolve({
                 statusCode: 201,
                 path: path.join(
-                  `vs${snippet}/reactions/r${reaction}/comments`,
+                  `${reactionPath}/comments`,
                   `c${contents.length + 1}.mp4`,
                 ),
               })
@@ -60,7 +60,7 @@ const uploadCommentFiles = (file, snippet, reaction) => {
                   path.join(
                     __dirname,
                     '..',
-                    `videos/vs${snippet}/reactions/r${reaction}/comments`,
+                    `videos/${reactionPath}/comments`,
                     `c${contents.length + 1}.mp4`,
                   ),
                   file,
@@ -69,7 +69,7 @@ const uploadCommentFiles = (file, snippet, reaction) => {
                                     ? resolve({
                     statusCode: 201,
                     path: path.join(
-                      `vs${snippet}/reactions/r${reaction}/comments`,
+                      `${reactionPath}/comments`,
                       `c${contents.length + 1}.mp4`,
                     ),
                   })

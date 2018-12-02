@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Tweets } from "../Tweets/Tweets";
+import { Tweets } from "../Tweets/Tweets";
 import { News } from "../News/News";
 import { ModalDisplay } from "../Modal/Modal";
 import { Gallery } from "../Gallery/Gallery";
@@ -16,7 +16,8 @@ class Home extends Component {
         video: null,
         comments: null,
         open: false,
-        openDialogue: false
+        openDialogue: false,
+        reactionId: null
     };
 
     componentDidMount() {
@@ -50,7 +51,8 @@ class Home extends Component {
             return this.setState({
                 open: true,
                 videolink: reaction.reactionPath,
-                comments: comments.data
+                comments: comments.data,
+                reactionId: id
             });
         });
     };
@@ -66,14 +68,21 @@ class Home extends Component {
         });
     };
 
-    saveComment = event => {
+    saveComment = (event, reactionPath) => {
         event.preventDefault();
+        console.log(this.state.reactionId);
         let form = new FormData();
         form.append("country", event.target.country.value);
         form.append("video", event.target.video.files[0]);
+        form.append("reactionPath", reactionPath);
 
-        saveItems(form).then(result => {
-            console.log(result);
+        saveItems(form, this.state.reactionId).then(result => {
+            getComments(this.state.reactionId).then(comments => {
+                return this.setState({
+                    openDialogue: false,
+                    comments: comments.data
+                });
+            });
         });
     };
 
@@ -89,12 +98,12 @@ class Home extends Component {
     };
 
     handleClose = form => {
-        this.setState({ openDialogue: false });
+        this.setState({ openDialogue: false, open: true });
     };
     handleClickOpen = () => {
+        console.log("handleClickOpen Called");
         this.setState({ openDialogue: true, open: false });
     };
-    fetchItems = apiLink => {};
     render() {
         return (
             <div className="row">
@@ -102,11 +111,10 @@ class Home extends Component {
                     className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
                     style={{ paddingRight: "0px !important" }}
                 >
-                    {/* <Tweets /> */}
+                    <Tweets />
                     <hr />
                     <News />
                 </div>
-
                 <div className="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">
                     <Gallery
                         videos={this.state.payload}
@@ -115,7 +123,6 @@ class Home extends Component {
                         closeModal={this.onCloseModal}
                     />
                 </div>
-
                 {this.state.open ? (
                     <ModalDisplay
                         open={this.state.open}
@@ -124,13 +131,16 @@ class Home extends Component {
                         comments={this.state.comments}
                         updateSrc={this.changeSrc}
                         video={this.state.videolink}
+                        handleClickOpen={this.handleClickOpen}
                     />
                 ) : null}
+                {console.log(this.state)}
                 {this.state.openDialogue ? (
                     <Uploader
                         openDialogue={this.state.openDialogue}
                         handleClose={this.handleClose}
-                        handleClickOpen={this.handleClickOpen}
+                        saveComment={this.saveComment}
+                        videoLink={this.state.videolink}
                     />
                 ) : null}
             </div>

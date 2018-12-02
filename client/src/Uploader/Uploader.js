@@ -16,18 +16,21 @@ const styles = theme => ({
 
 const Uploader = props => {
     const classes = styles;
-    console.log(props);
+    const reactionPath = props.videoLink.substring(
+        0,
+        props.videoLink.lastIndexOf("/")
+    );
     return (
         <div>
             <Dialog
-                open={props.openDialogue}
+                open={true}
                 onClose={props.handleClose}
                 aria-labelledby="form-dialog-title"
             >
                 <form
                     id="content-form"
                     encType="multipart/form-data"
-                    onSubmit={event => props.saveComment(event)}
+                    onSubmit={event => props.saveComment(event, reactionPath)}
                 >
                     <DialogTitle id="form-dialog-title">Comment</DialogTitle>
                     <DialogContent>

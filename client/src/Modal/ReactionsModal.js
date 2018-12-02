@@ -51,7 +51,7 @@ const ReactionsModal = props => {
                                     <button
                                         type="button"
                                         className="btn btn-default btn-block"
-                                        data-dismiss="modal"
+                                        onClick={() => props.onClose()}
                                     >
                                         Close
                                     </button>
@@ -60,6 +60,7 @@ const ReactionsModal = props => {
                                     <button
                                         type="button"
                                         className="btn btn-success btn-block"
+                                        onClick={() => props.handleClickOpen()}
                                     >
                                         Upload
                                     </button>

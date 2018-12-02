@@ -5,7 +5,7 @@ import { Reactions } from "../Reactions/Reactions";
 import { ReactionsModal } from "../Modal/ReactionsModal";
 import { BASE_VIDEO_URL } from "../configs/config";
 const ModalDisplay = props => {
-    console.log(props.video);
+    console.log(props);
     return (
         <div>
             {props.videos.videoSnippet ? (
@@ -58,28 +58,6 @@ const ModalDisplay = props => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <div className="row">
-                                    <div className="col-md-6 col-xs-6 col-sm-6 col-lg-6">
-                                        <button
-                                            type="button"
-                                            className="btn btn-default btn-block"
-                                            data-dismiss="modal"
-                                        >
-                                            Close
-                                        </button>
-                                    </div>
-                                    <div className="col-md-6 col-xs-6 col-sm-6 col-lg-6">
-                                        <button
-                                            type="button"
-                                            className="btn btn-success btn-block"
-                                            onClick={props.handleClickOpen}
-                                        >
-                                            Upload
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </Modal>
@@ -90,6 +68,7 @@ const ModalDisplay = props => {
                     comments={props.comments}
                     updateSrc={props.updateSrc}
                     video={props.video}
+                    handleClickOpen={props.handleClickOpen}
                 />
             )}
         </div>

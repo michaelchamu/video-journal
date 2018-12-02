@@ -56,8 +56,7 @@ module.exports = [{
     if (reaction.length === 0) return h.response({ statusCode: 404 });
     return uploadCommentFiles(
       request.payload.video,
-      request.payload.snippet,
-      request.payload.reaction,
+      request.payload.reactionPath,
     ).then((result, error) => {
       if (error) return h.response({ statusCode: 400, error });
 
