@@ -6,7 +6,7 @@ module.exports = [{
   path: '/api/video/setup',
   config: {
     payload: {
-      maxBytes: 1000 * 1000 * 50,
+      maxBytes: 1000 * 1000 * 1000,
       output: 'stream',
     },
   },
