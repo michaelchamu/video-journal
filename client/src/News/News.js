@@ -31,7 +31,7 @@ const News = () => {
                                           </a>
                                           -{article.date}
                                       </h4>
-                                      <p>Placeholder content</p>
+                                      <p></p>
                                       <small>By:{article.author}</small>
                                   </div>
                               </div>
