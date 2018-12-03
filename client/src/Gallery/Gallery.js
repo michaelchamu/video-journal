@@ -1,6 +1,6 @@
-import React from "react";
-import VideoThumbnail from "react-video-thumbnail";
-import { BASE_VIDEO_URL } from "../configs/config";
+import React from 'react';
+import VideoThumbnail from 'react-video-thumbnail';
+import { BASE_VIDEO_URL } from '../configs/config';
 
 const Gallery = props => {
     return (
@@ -11,27 +11,23 @@ const Gallery = props => {
                           <div
                               key={position}
                               className="row"
-                              style={{ margin: "0px" }}
+                              style={{ margin: '0px' }}
                           >
                               <div
                                   className="col-md-3 col-lg-3"
                                   style={{
-                                      backgroundColor: "orange",
-                                      paddingBottom: "20px",
-                                      paddingTop: "18px",
-                                      display: "inline-block"
+                                      backgroundColor: 'orange',
+                                      paddingBottom: '20px',
+                                      paddingTop: '18px',
+                                      display: 'inline-block'
                                   }}
                               >
-                                  <a
-                                      href="#"
+                                  <img
+                                      alt={''}
+                                      className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
+                                      src={`images/${position + 1}.jpg`}
                                       onClick={() => props.openModal(videos)}
-                                  >
-                                      <VideoThumbnail
-                                          videoUrl={`${BASE_VIDEO_URL}${
-                                              videos.videoSnippet.path
-                                          }`}
-                                      />
-                                  </a>
+                                  />
                               </div>
                               <div className="row">
                                   <div className="container testimonial-group force-style">
@@ -41,6 +37,7 @@ const Gallery = props => {
                                       >
                                           {videos.reactions.map(
                                               (reactions, index) => {
+                                                  console.log(reactions);
                                                   return (
                                                       <div
                                                           key={index}
@@ -48,24 +45,21 @@ const Gallery = props => {
                                                           id="video1"
                                                           style={{
                                                               verticalAlign:
-                                                                  "center"
+                                                                  'center'
                                                           }}
                                                       >
-                                                          <a
-                                                              href="#"
+                                                          <img
+                                                              alt={''}
+                                                              className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
+                                                              src={`images/${position +
+                                                                  1}.jpg`}
                                                               onClick={() =>
                                                                   props.openReactionModal(
                                                                       reactions,
                                                                       reactions._id
                                                                   )
                                                               }
-                                                          >
-                                                              <VideoThumbnail
-                                                                  videoUrl={`${BASE_VIDEO_URL}${
-                                                                      reactions.reactionPath
-                                                                  }`}
-                                                              />
-                                                          </a>
+                                                          />
                                                       </div>
                                                   );
                                               }
