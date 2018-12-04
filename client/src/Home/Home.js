@@ -108,7 +108,7 @@ class Home extends Component {
         return (
             <div className="row">
                 <div
-                    className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
+                    className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed desk"
                     style={{ paddingRight: "0px !important" }}
                 >
                     <Tweets />
@@ -122,6 +122,14 @@ class Home extends Component {
                         openReactionModal={this.openReactionModal}
                         closeModal={this.onCloseModal}
                     />
+                </div>
+                <div
+                    className="col-xs-12 col-md-0 col-lg-0 col-sm-12 mobile"
+                    style={{ paddingRight: "0px !important" }}
+                >
+                    <Tweets />
+                    <hr />
+                    <News />
                 </div>
                 {this.state.open ? (
                     <ModalDisplay

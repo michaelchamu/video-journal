@@ -7,7 +7,7 @@ const News = () => {
             style={{ height: "50%", overflow: "scroll" }}
         >
             <center>
-                <h1>News Articles</h1>
+                <h3>News Articles</h3>
             </center>
             <hr style={{ color: "black" }} />
             {news.length > 0
@@ -31,7 +31,7 @@ const News = () => {
                                           </a>
                                           -{article.date}
                                       </h4>
-                                      <p></p>
+                                      <p />
                                       <small>By:{article.author}</small>
                                   </div>
                               </div>
