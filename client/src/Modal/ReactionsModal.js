@@ -31,18 +31,16 @@ const ReactionsModal = props => {
                                 className="container testimonial-group"
                                 style={{ width: "100%" }}
                             >
-                                <div className="row text-center">
-                                    {props.comments ? (
-                                        <Comments
-                                            comments={props.comments}
-                                            updateSrc={props.updateSrc}
-                                        />
-                                    ) : (
-                                        <div>
-                                            <h3>No comments</h3>
-                                        </div>
-                                    )}
-                                </div>
+                                {props.comments ? (
+                                    <Comments
+                                        comments={props.comments}
+                                        updateSrc={props.updateSrc}
+                                    />
+                                ) : (
+                                    <div>
+                                        <h3>No comments</h3>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="modal-footer">
