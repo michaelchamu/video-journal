@@ -1,5 +1,4 @@
 import React from 'react';
-import VideoThumbnail from 'react-video-thumbnail';
 import { BASE_VIDEO_URL } from '../configs/config';
 
 const Gallery = props => {
@@ -7,6 +6,13 @@ const Gallery = props => {
         <div>
             {props.videos.length
                 ? props.videos.map((videos, position) => {
+                      let image = `${BASE_VIDEO_URL}${
+                          videos.videoSnippet.path
+                      }`;
+                      console.log(image);
+                      console.log(
+                          `${image.substring(0, image.lastIndexOf('.'))}.png`
+                      );
                       return (
                           <div
                               key={position}
@@ -25,7 +31,10 @@ const Gallery = props => {
                                   <img
                                       alt={''}
                                       className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                      src={`images/${position + 1}.jpg`}
+                                      src={`${image.substring(
+                                          0,
+                                          image.lastIndexOf('.')
+                                      )}.png`}
                                       onClick={() => props.openModal(videos)}
                                   />
                               </div>
@@ -37,7 +46,17 @@ const Gallery = props => {
                                       >
                                           {videos.reactions.map(
                                               (reactions, index) => {
-                                                  console.log(reactions);
+                                                  let reactionImage = `${BASE_VIDEO_URL}${
+                                                      reactions.reactionPath
+                                                  }`;
+                                                  console.log(
+                                                      `${reactionImage.substring(
+                                                          0,
+                                                          reactionImage.lastIndexOf(
+                                                              '.'
+                                                          )
+                                                      )}.png`
+                                                  );
                                                   return (
                                                       <div
                                                           key={index}
@@ -51,8 +70,12 @@ const Gallery = props => {
                                                           <img
                                                               alt={''}
                                                               className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                                              src={`images/${position +
-                                                                  1}.jpg`}
+                                                              src={`${reactionImage.substring(
+                                                                  0,
+                                                                  reactionImage.lastIndexOf(
+                                                                      '.'
+                                                                  )
+                                                              )}.png`}
                                                               onClick={() =>
                                                                   props.openReactionModal(
                                                                       reactions,
