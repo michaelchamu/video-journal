@@ -9,9 +9,11 @@
     display: inline-block;
     float: none;
 }
+
 .force-style {
-    margin-right: 0px !important;
+    margin-right: 0 !important;
 }
+
 
 /* Decorations */
 
@@ -44,6 +46,40 @@
 .scrollit {
     float: right;
 }
+
 div.react-thumbnail-generator img {
     width: 100% !important;
+}
+
+
+/* ===================CSS FOR HIDING THE TWEETS ON MOBILE==================== */
+
+.desk {
+    /* width: 400px;
+    height: 200px;
+    background: red; */
+}
+
+.mobile {
+    /* width: 400px;
+    height: 200px;
+    background: orange; */
+}
+
+@media screen and (max-width: 1920px) {
+    .mobile {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .desk {
+        visibility: hidden;
+    }
+    .mobile {
+        visibility: visible;
+    }
+    .fixed {
+        position: absolute !important;
+    }
 }

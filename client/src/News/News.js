@@ -4,7 +4,7 @@ const News = () => {
     return (
         <div className="col-xs-12" style={{ overflow: 'scroll' }}>
             <center>
-                <h1>News Articles</h1>
+                <h3>News Articles</h3>
             </center>
             <hr style={{ color: 'black' }} />
             {news.length > 0
