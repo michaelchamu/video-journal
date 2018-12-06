@@ -9,10 +9,7 @@ const Gallery = props => {
                       let image = `${BASE_VIDEO_URL}${
                           videos.videoSnippet.path
                       }`;
-                      console.log(image);
-                      console.log(
-                          `${image.substring(0, image.lastIndexOf('.'))}.png`
-                      );
+
                       return (
                           <div
                               key={position}
@@ -49,14 +46,7 @@ const Gallery = props => {
                                                   let reactionImage = `${BASE_VIDEO_URL}${
                                                       reactions.reactionPath
                                                   }`;
-                                                  console.log(
-                                                      `${reactionImage.substring(
-                                                          0,
-                                                          reactionImage.lastIndexOf(
-                                                              '.'
-                                                          )
-                                                      )}.png`
-                                                  );
+
                                                   return (
                                                       <div
                                                           key={index}

@@ -1,14 +1,14 @@
-import React from "react";
-import Modal from "react-responsive-modal";
-import { Comments } from "../Comments/Comments";
-import { Reactions } from "../Reactions/Reactions";
-import { ReactionsModal } from "../Modal/ReactionsModal";
-import { BASE_VIDEO_URL } from "../configs/config";
+import React from 'react';
+import Modal from 'react-responsive-modal';
+import { Comments } from '../Comments/Comments';
+import { Reactions } from '../Reactions/Reactions';
+import { ReactionsModal } from '../Modal/ReactionsModal';
+import { BASE_VIDEO_URL } from '../configs/config';
 const ModalDisplay = props => {
     console.log(props);
     return (
         <div>
-            {props.videos.videoSnippet ? (
+            {props.videos.videoSnippet && !props.comments ? (
                 <Modal open={props.open} onClose={props.onClose} center>
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -41,7 +41,7 @@ const ModalDisplay = props => {
                                 </div>
                                 <div
                                     className="container testimonial-group"
-                                    style={{ width: "100%" }}
+                                    style={{ width: '100%' }}
                                 >
                                     <div className="row text-center">
                                         {props.comments ? (

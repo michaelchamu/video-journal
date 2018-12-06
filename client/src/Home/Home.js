@@ -33,21 +33,16 @@ class Home extends Component {
     };
 
     openModal = video => {
-        console.log(video);
         this.setState({
             open: true,
             payload: video,
             comments: null,
             videolink: video.videoSnippet.path
         });
-
-        console.log({ open: true, payload: this.state.payload });
     };
 
     openReactionModal = (reaction, id) => {
-        console.log(reaction.reactionPath);
         getComments(id).then(comments => {
-            console.log(comments.data);
             return this.setState({
                 open: true,
                 videolink: reaction.reactionPath,
@@ -64,13 +59,11 @@ class Home extends Component {
                 comments: null,
                 open: false
             });
-            console.log({ open: this.state.open, payload: this.state.payload });
         });
     };
 
     saveComment = (event, reactionPath) => {
         event.preventDefault();
-        console.log(this.state.reactionId);
         let form = new FormData();
         form.append('country', event.target.country.value);
         form.append('video', event.target.video.files[0]);
@@ -89,10 +82,11 @@ class Home extends Component {
     changeSrc = (videolink, id) => {
         //get comments
         getComments(id).then(comments => {
-            console.log(comments);
+            console.log(this.state);
             return this.setState({
                 videolink: videolink,
-                comments: comments.data
+                comments: comments.data,
+                videoSnippet: null
             });
         });
     };
@@ -101,7 +95,6 @@ class Home extends Component {
         this.setState({ openDialogue: false, open: true });
     };
     handleClickOpen = () => {
-        console.log('handleClickOpen Called');
         this.setState({ openDialogue: true, open: false });
     };
     render() {
@@ -109,7 +102,7 @@ class Home extends Component {
             <div className="row">
                 <div
                     className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed desk"
-                    style={{ paddingRight: "0px !important" }}
+                    style={{ paddingRight: '0px !important' }}
                 >
                     {/* <Tweets />
                     <hr /> */}
@@ -123,14 +116,14 @@ class Home extends Component {
                         closeModal={this.onCloseModal}
                     />
                 </div>
-                <div
+                {/* <div
                     className="col-xs-12 col-md-0 col-lg-0 col-sm-12 mobile"
                     style={{ paddingRight: "0px !important" }}
                 >
                     <Tweets />
                     <hr />
                     <News />
-                </div>
+                </div> */}
                 {this.state.open ? (
                     <ModalDisplay
                         open={this.state.open}
@@ -142,7 +135,6 @@ class Home extends Component {
                         handleClickOpen={this.handleClickOpen}
                     />
                 ) : null}
-                {console.log(this.state)}
                 {this.state.openDialogue ? (
                     <Uploader
                         openDialogue={this.state.openDialogue}

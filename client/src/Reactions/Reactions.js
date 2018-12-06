@@ -1,5 +1,4 @@
 import React from 'react';
-import VideoThumbnail from 'react-video-thumbnail';
 import { BASE_VIDEO_URL } from '../configs/config';
 
 const Reactions = props => {
