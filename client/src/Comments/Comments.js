@@ -3,11 +3,13 @@ import { BASE_VIDEO_URL } from '../configs/config';
 import VideoThumbnail from 'react-video-thumbnail';
 
 const Comments = props => {
-    console.log(props);
     return (
         <div>
             {props.comments
                 ? props.comments.map((comment, index) => {
+                      let commentImage = `${BASE_VIDEO_URL}${
+                          comment.commentPath
+                      }`;
                       return (
                           <div
                               key={index}
@@ -16,7 +18,10 @@ const Comments = props => {
                               <img
                                   alt={''}
                                   className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                  src={`images/comment.png`}
+                                  src={`${commentImage.substring(
+                                      0,
+                                      commentImage.lastIndexOf('.')
+                                  )}.png`}
                                   onClick={() =>
                                       props.updateSrc(
                                           comment.commentPath,

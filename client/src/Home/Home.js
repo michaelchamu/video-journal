@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Tweets } from "../Tweets/Tweets";
-import { News } from "../News/News";
-import { ModalDisplay } from "../Modal/Modal";
-import { Gallery } from "../Gallery/Gallery";
-import { Uploader } from "../Uploader/Uploader";
+import React, { Component } from 'react';
+import { Tweets } from '../Tweets/Tweets';
+import { News } from '../News/News';
+import { ModalDisplay } from '../Modal/Modal';
+import { Gallery } from '../Gallery/Gallery';
+import { Uploader } from '../Uploader/Uploader';
 import {
     fetchItems,
     saveItems,
     getComments
-} from "../services/functions.services";
+} from '../services/functions.services';
 class Home extends Component {
     state = {
         payload: fetchItems(),
-        videolink: "",
+        videolink: '',
         video: null,
         comments: null,
         open: false,
@@ -72,9 +72,9 @@ class Home extends Component {
         event.preventDefault();
         console.log(this.state.reactionId);
         let form = new FormData();
-        form.append("country", event.target.country.value);
-        form.append("video", event.target.video.files[0]);
-        form.append("reactionPath", reactionPath);
+        form.append('country', event.target.country.value);
+        form.append('video', event.target.video.files[0]);
+        form.append('reactionPath', reactionPath);
 
         saveItems(form, this.state.reactionId).then(result => {
             getComments(this.state.reactionId).then(comments => {
@@ -101,7 +101,7 @@ class Home extends Component {
         this.setState({ openDialogue: false, open: true });
     };
     handleClickOpen = () => {
-        console.log("handleClickOpen Called");
+        console.log('handleClickOpen Called');
         this.setState({ openDialogue: true, open: false });
     };
     render() {
@@ -109,10 +109,10 @@ class Home extends Component {
             <div className="row">
                 <div
                     className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed"
-                    style={{ paddingRight: "0px !important" }}
+                    style={{ paddingRight: '0px !important' }}
                 >
-                    <Tweets />
-                    <hr />
+                    {/* <Tweets />
+                    <hr /> */}
                     <News />
                 </div>
                 <div className="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">

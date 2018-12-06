@@ -1,15 +1,12 @@
-import React from "react";
-const news = require("../data/articles.json");
+import React from 'react';
+const news = require('../data/articles.json');
 const News = () => {
     return (
-        <div
-            className="col-xs-12"
-            style={{ height: "50%", overflow: "scroll" }}
-        >
+        <div className="col-xs-12" style={{ overflow: 'scroll' }}>
             <center>
                 <h1>News Articles</h1>
             </center>
-            <hr style={{ color: "black" }} />
+            <hr style={{ color: 'black' }} />
             {news.length > 0
                 ? news.map((article, index) => {
                       return (
@@ -18,7 +15,7 @@ const News = () => {
                                   <div className="col-xs-12 col-sm-12 col-md-12">
                                       <a href={article.uri}>
                                           <img
-                                              alt={""}
+                                              alt={''}
                                               src={`images/${index + 1}.jpg`}
                                               className="img-responsive img-box img-thumbnail"
                                           />
@@ -31,7 +28,7 @@ const News = () => {
                                           </a>
                                           -{article.date}
                                       </h4>
-                                      <p></p>
+                                      <p />
                                       <small>By:{article.author}</small>
                                   </div>
                               </div>
