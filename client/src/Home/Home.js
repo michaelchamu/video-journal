@@ -100,21 +100,24 @@ class Home extends Component {
     render() {
         return (
             <div className="row">
-                <div
-                    className="col-xs-2 col-md-2 col-lg-2 col-sm-0 fixed desk"
-                    style={{ paddingRight: '0px !important' }}
-                >
-                    {/* <Tweets />
-                    <hr /> */}
-                    <News />
-                </div>
-                <div className="col-xs-10 col-md-10 col-lg-10 col-sm-12 scrollit">
+                <div className="col-xs-12 col-md-10 col-lg-10 col-sm-12 scrollit">
+                    <center>
+                        <h1>#TalkToTheSan</h1>
+                    </center>
                     <Gallery
                         videos={this.state.payload}
                         openModal={this.openModal}
                         openReactionModal={this.openReactionModal}
                         closeModal={this.onCloseModal}
                     />
+                </div>
+                <div
+                    className="col-xs-12 col-md-2 col-lg-2 col-sm-12 fixed desk"
+                    style={{ paddingRight: '0px !important' }}
+                >
+                    {/* <Tweets />
+                    <hr /> */}
+                    <News />
                 </div>
                 {/* <div
                     className="col-xs-12 col-md-0 col-lg-0 col-sm-12 mobile"

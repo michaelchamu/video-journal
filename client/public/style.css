@@ -17,14 +17,14 @@
 
 /* Decorations */
 
-.col-xs-4 {
+/* .col-xs-4 {
     color: #fff;
     font-size: 48px;
     padding-bottom: 20px;
     padding-top: 18px;
-}
+} */
 
-.col-xs-4:nth-child(3n+1) {
+/* .col-xs-4:nth-child(3n+1) {
     background: #c69;
 }
 
@@ -34,10 +34,10 @@
 
 .col-xs-4:nth-child(3n+3) {
     background: #69c;
-}
+} */
 
 .fixed {
-    /* float: left; */
+    float: left;
     position: fixed;
     overflow: scroll;
     height: 100%;
@@ -74,12 +74,15 @@ div.react-thumbnail-generator img {
 
 @media screen and (max-width: 600px) {
     .desk {
-        visibility: hidden;
+        /* visibility: hidden; */
+        /* display: relative; */
+        /* overflow: visible; */
+        /* width:100%; */
     }
     .mobile {
         visibility: visible;
     }
     .fixed {
-        position: absolute !important;
+        position: relative !important;
     }
 }
