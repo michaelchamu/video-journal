@@ -1,6 +1,4 @@
 import React from 'react';
-import { BASE_VIDEO_URL } from '../configs/config';
-import VideoThumbnail from 'react-video-thumbnail';
 
 const Comments = props => {
     return (
@@ -11,6 +9,7 @@ const Comments = props => {
                           <div
                               key={index}
                               className="col-xs-4 col-sm-4 col-lg-4 col-md-4"
+                              style={props.styles}
                           >
                               <img
                                   alt={''}

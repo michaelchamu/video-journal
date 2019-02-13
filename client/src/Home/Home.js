@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Tweets } from '../Tweets/Tweets';
 import { News } from '../News/News';
 import { ModalDisplay } from '../Modal/Modal';
 import { Gallery } from '../Gallery/Gallery';
@@ -15,6 +14,7 @@ class Home extends Component {
         videolink: '',
         video: null,
         comments: null,
+        styles: null,
         open: false,
         openDialogue: false,
         reactionId: null
@@ -32,22 +32,24 @@ class Home extends Component {
         this.setState({ videolink: video });
     };
 
-    openModal = video => {
+    openModal = (video, style) => {
         this.setState({
             open: true,
             payload: video,
             comments: null,
-            videolink: video.videoSnippet.path
+            videolink: video.videoSnippet.path,
+            styles: style
         });
     };
 
-    openReactionModal = (reaction, id) => {
+    openReactionModal = (reaction, id, style) => {
         getComments(id).then(comments => {
             return this.setState({
                 open: true,
                 videolink: reaction.reactionPath,
                 comments: comments.data,
-                reactionId: id
+                reactionId: id,
+                styles: style
             });
         });
     };
@@ -102,7 +104,7 @@ class Home extends Component {
             <div className="row">
                 <div className="col-xs-12 col-md-10 col-lg-10 col-sm-12 scrollit">
                     <center>
-                        <h1>#TalkToTheSan</h1>
+                        <h1>#TellTheSan</h1>
                     </center>
                     <Gallery
                         videos={this.state.payload}
@@ -136,6 +138,7 @@ class Home extends Component {
                         updateSrc={this.changeSrc}
                         video={this.state.videolink}
                         handleClickOpen={this.handleClickOpen}
+                        style={this.state.styles}
                     />
                 ) : null}
                 {this.state.openDialogue ? (

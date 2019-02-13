@@ -3,6 +3,7 @@ import Modal from 'react-responsive-modal';
 import { Comments } from '../Comments/Comments';
 import { BASE_VIDEO_URL } from '../configs/config';
 const ReactionsModal = props => {
+    console.log(props);
     return (
         <div>
             <Modal open={props.open} onClose={props.onClose} center>

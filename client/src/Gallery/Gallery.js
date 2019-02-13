@@ -3,7 +3,6 @@ import { BASE_VIDEO_URL } from '../configs/config';
 let style = {};
 let style2 = {};
 const colorChange = props => {
-    console.log(props);
     // #9E163A
     // #E6165E
     // #442775
@@ -147,13 +146,11 @@ const Gallery = props => {
                           videos.videoSnippet.path
                       }`;
                       colorChange(videos.videoSnippet);
-                      console.log(style);
                       return (
                           <div
                               key={position}
                               className="row"
-                              //move this entire blocl
-                              style={{ margin: '0px' }} //style={style}
+                              style={{ margin: '0px' }}
                           >
                               <div className="col-md-3 col-lg-3" style={style}>
                                   <img
@@ -163,7 +160,9 @@ const Gallery = props => {
                                           0,
                                           image.lastIndexOf('.')
                                       )}.png`}
-                                      onClick={() => props.openModal(videos)}
+                                      onClick={() =>
+                                          props.openModal(videos, style)
+                                      }
                                   />
                               </div>
                               <div

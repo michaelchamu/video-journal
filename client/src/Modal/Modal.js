@@ -48,11 +48,13 @@ const ModalDisplay = props => {
                                             <Comments
                                                 comments={props.comments}
                                                 updateSrc={props.updateSrc}
+                                                styles={props.style}
                                             />
                                         ) : (
                                             <Reactions
                                                 videos={props.videos}
                                                 updateSrc={props.updateSrc}
+                                                styles={props.style}
                                             />
                                         )}
                                     </div>
