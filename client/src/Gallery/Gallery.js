@@ -1,5 +1,4 @@
 import React from 'react';
-import { BASE_VIDEO_URL } from '../configs/config';
 let style = {};
 let style2 = {};
 const colorChange = props => {
@@ -142,9 +141,6 @@ const Gallery = props => {
         <div>
             {props.videos.length
                 ? props.videos.map((videos, position) => {
-                      let image = `${BASE_VIDEO_URL}${
-                          videos.videoSnippet.path
-                      }`;
                       colorChange(videos.videoSnippet);
                       return (
                           <div
@@ -178,10 +174,6 @@ const Gallery = props => {
                                       >
                                           {videos.reactions.map(
                                               (reactions, index) => {
-                                                  let reactionImage = `${BASE_VIDEO_URL}${
-                                                      reactions.reactionPath
-                                                  }`;
-
                                                   return (
                                                       <div
                                                           key={index}
@@ -196,12 +188,9 @@ const Gallery = props => {
                                                           <img
                                                               alt={''}
                                                               className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                                              src={`${reactionImage.substring(
-                                                                  0,
-                                                                  reactionImage.lastIndexOf(
-                                                                      '.'
-                                                                  )
-                                                              )}.png`}
+                                                              src={`http://img.youtube.com/vi/${
+                                                                  reactions.reactionPath
+                                                              }/0.jpg`}
                                                               onClick={() =>
                                                                   props.openReactionModal(
                                                                       reactions,
