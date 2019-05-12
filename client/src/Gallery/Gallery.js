@@ -156,10 +156,9 @@ const Gallery = props => {
                                   <img
                                       alt={''}
                                       className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                      src={`${image.substring(
-                                          0,
-                                          image.lastIndexOf('.')
-                                      )}.png`}
+                                      src={`http://img.youtube.com/vi/${
+                                          videos.videoSnippet.path
+                                      }/0.jpg`}
                                       onClick={() =>
                                           props.openModal(videos, style)
                                       }
