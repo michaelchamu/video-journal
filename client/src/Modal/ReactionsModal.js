@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 import { Comments } from '../Comments/Comments';
-import { BASE_VIDEO_URL } from '../configs/config';
 const ReactionsModal = props => {
     console.log(props);
     return (
@@ -19,11 +18,13 @@ const ReactionsModal = props => {
                         <div className="modal-body">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <video
-                                        src={`${BASE_VIDEO_URL}${props.video}`}
-                                        className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                        height="100%"
-                                        controls
+                                    <iframe
+                                        title="Snippet"
+                                        width="100%"
+                                        height="315"
+                                        src={`https://www.youtube.com/embed/${
+                                            props.video
+                                        }`}
                                     />
                                 </div>
                             </div>

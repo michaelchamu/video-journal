@@ -28,13 +28,6 @@ const ModalDisplay = props => {
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        {/* <video
-                                            src={`${props.video}`}
-                                            className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                            height="100%"
-                                            controls
-                                        /> */}
-
                                         <iframe
                                             title="Snippet"
                                             width="100%"
