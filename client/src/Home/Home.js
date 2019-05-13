@@ -84,7 +84,6 @@ class Home extends Component {
     changeSrc = (videolink, id) => {
         //get comments
         getComments(id).then(comments => {
-            console.log(this.state);
             return this.setState({
                 videolink: videolink,
                 comments: comments.data,
@@ -117,10 +116,9 @@ class Home extends Component {
                     className="col-xs-12 col-md-2 col-lg-2 col-sm-12 fixed desk"
                     style={{ paddingRight: '0px !important' }}
                 >
- 
                     <News />
                 </div>
-     
+
                 {this.state.open ? (
                     <ModalDisplay
                         open={this.state.open}

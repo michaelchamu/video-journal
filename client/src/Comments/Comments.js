@@ -14,7 +14,9 @@ const Comments = props => {
                               <img
                                   alt={''}
                                   className="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-                                  src={'images/comment.png'}
+                                  src={`http://img.youtube.com/vi/${
+                                      comment.commentPath
+                                  }/0.jpg`}
                                   onClick={() =>
                                       props.updateSrc(
                                           comment.commentPath,

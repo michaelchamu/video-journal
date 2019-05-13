@@ -4,7 +4,6 @@ import { Comments } from '../Comments/Comments';
 import { Reactions } from '../Reactions/Reactions';
 import { ReactionsModal } from '../Modal/ReactionsModal';
 const ModalDisplay = props => {
-    console.log(props);
     return (
         <div>
             {props.videos.videoSnippet && !props.comments ? (

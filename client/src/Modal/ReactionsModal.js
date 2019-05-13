@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from 'react-responsive-modal';
 import { Comments } from '../Comments/Comments';
 const ReactionsModal = props => {
-    console.log(props);
     return (
         <div>
             <Modal open={props.open} onClose={props.onClose} center>

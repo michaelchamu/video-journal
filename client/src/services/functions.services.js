@@ -1,5 +1,5 @@
-import { API_URL } from "../configs/config";
-const axios = require("axios");
+import { API_URL } from '../configs/config';
+const axios = require('axios');
 const fetchItems = () => {
     return axios
         .get(`${API_URL}video`)
@@ -12,9 +12,9 @@ const fetchItems = () => {
 };
 
 const saveItems = (data, reactionId) => {
-    console.log(API_URL + "reaction/" + reactionId);
+    console.log(API_URL + 'reaction/' + reactionId);
     return axios
-        .patch(API_URL + "reaction/" + reactionId, data)
+        .patch(API_URL + 'reaction/' + reactionId, data)
         .then(result => {
             return result;
         })
@@ -24,6 +24,7 @@ const saveItems = (data, reactionId) => {
 };
 
 const getComments = id => {
+    console.log(id);
     return axios
         .get(`${API_URL}comments/${id}`)
         .then(result => {

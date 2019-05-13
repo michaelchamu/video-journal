@@ -1,7 +1,6 @@
 import React from 'react';
 import { BASE_VIDEO_URL } from '../configs/config';
 const Video = props => {
-    console.log(props.videos);
     return (
         <div>
             {props.videos ? (
@@ -52,13 +51,15 @@ const Video = props => {
                                                     <img
                                                         onClick={() =>
                                                             props.updateSrc(
-                                                                `${BASE_VIDEO_URL}${
+                                                                `${
                                                                     reaction.reactionPath
                                                                 }`,
                                                                 reaction._id
                                                             )
                                                         }
-                                                        src="http://localhost:3000/images/1.jpg"
+                                                        src={`http://img.youtube.com/vi/${
+                                                            reaction.reactionPath
+                                                        }/0.jpg`}
                                                         className="col-xs-12 col-sm-12"
                                                     />
                                                 </div>
