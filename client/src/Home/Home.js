@@ -117,18 +117,10 @@ class Home extends Component {
                     className="col-xs-12 col-md-2 col-lg-2 col-sm-12 fixed desk"
                     style={{ paddingRight: '0px !important' }}
                 >
-                    {/* <Tweets />
-                    <hr /> */}
+ 
                     <News />
                 </div>
-                {/* <div
-                    className="col-xs-12 col-md-0 col-lg-0 col-sm-12 mobile"
-                    style={{ paddingRight: "0px !important" }}
-                >
-                    <Tweets />
-                    <hr />
-                    <News />
-                </div> */}
+     
                 {this.state.open ? (
                     <ModalDisplay
                         open={this.state.open}
